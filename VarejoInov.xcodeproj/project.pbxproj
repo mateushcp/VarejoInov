@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */; };
 		A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */; };
-		A9EC6A662A5EF21E00FB792C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A652A5EF21E00FB792C /* ViewController.swift */; };
-		A9EC6A692A5EF21E00FB792C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EC6A672A5EF21E00FB792C /* Main.storyboard */; };
 		A9EC6A6B2A5EF21F00FB792C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9EC6A6A2A5EF21F00FB792C /* Assets.xcassets */; };
-		A9EC6A6E2A5EF21F00FB792C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9EC6A6C2A5EF21F00FB792C /* LaunchScreen.storyboard */; };
+		A9EC6A792A5F063A00FB792C /* VarejoInovFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A782A5F063A00FB792C /* VarejoInovFlowController.swift */; };
+		A9EC6A7D2A5F086100FB792C /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A7C2A5F086100FB792C /* ViewControllerFactory.swift */; };
+		A9EC6A7F2A5F087500FB792C /* ViewControllerFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A7E2A5F087500FB792C /* ViewControllerFactoryProtocol.swift */; };
+		A9EC6A8A2A5F0CA700FB792C /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A892A5F0CA700FB792C /* LoginScreenView.swift */; };
+		A9EC6A8C2A5F0CB600FB792C /* LoginScreenViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A8B2A5F0CB600FB792C /* LoginScreenViewDelegate.swift */; };
+		A9EC6A8E2A5F0CC500FB792C /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A8D2A5F0CC500FB792C /* LoginScreenViewController.swift */; };
+		A9EC6A902A5F0CD400FB792C /* LoginScreenFlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A8F2A5F0CD400FB792C /* LoginScreenFlowDelegate.swift */; };
+		A9EC6A952A5F203500FB792C /* UITextField+ Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A942A5F203500FB792C /* UITextField+ Ext.swift */; };
+		A9EC6A972A5F3D2200FB792C /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A962A5F3D2200FB792C /* MainScreenViewController.swift */; };
+		A9EC6A992A5F3D2C00FB792C /* MainScreenFlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A982A5F3D2C00FB792C /* MainScreenFlowDelegate.swift */; };
+		A9EC6A9B2A5F3D3200FB792C /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A9A2A5F3D3200FB792C /* MainScreenView.swift */; };
+		A9EC6A9D2A5F3D4000FB792C /* MainScreenViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A9C2A5F3D4000FB792C /* MainScreenViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A9EC6A5E2A5EF21E00FB792C /* VarejoInov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VarejoInov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A9EC6A652A5EF21E00FB792C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A9EC6A682A5EF21E00FB792C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A9EC6A6A2A5EF21F00FB792C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A9EC6A6D2A5EF21F00FB792C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A9EC6A6F2A5EF21F00FB792C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A9EC6A782A5F063A00FB792C /* VarejoInovFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VarejoInovFlowController.swift; sourceTree = "<group>"; };
+		A9EC6A7C2A5F086100FB792C /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		A9EC6A7E2A5F087500FB792C /* ViewControllerFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactoryProtocol.swift; sourceTree = "<group>"; };
+		A9EC6A892A5F0CA700FB792C /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
+		A9EC6A8B2A5F0CB600FB792C /* LoginScreenViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewDelegate.swift; sourceTree = "<group>"; };
+		A9EC6A8D2A5F0CC500FB792C /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
+		A9EC6A8F2A5F0CD400FB792C /* LoginScreenFlowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenFlowDelegate.swift; sourceTree = "<group>"; };
+		A9EC6A942A5F203500FB792C /* UITextField+ Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+ Ext.swift"; sourceTree = "<group>"; };
+		A9EC6A962A5F3D2200FB792C /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
+		A9EC6A982A5F3D2C00FB792C /* MainScreenFlowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenFlowDelegate.swift; sourceTree = "<group>"; };
+		A9EC6A9A2A5F3D3200FB792C /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
+		A9EC6A9C2A5F3D4000FB792C /* MainScreenViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +74,160 @@
 		A9EC6A602A5EF21E00FB792C /* VarejoInov */ = {
 			isa = PBXGroup;
 			children = (
-				A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */,
-				A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */,
-				A9EC6A652A5EF21E00FB792C /* ViewController.swift */,
-				A9EC6A672A5EF21E00FB792C /* Main.storyboard */,
-				A9EC6A6A2A5EF21F00FB792C /* Assets.xcassets */,
-				A9EC6A6C2A5EF21F00FB792C /* LaunchScreen.storyboard */,
+				A9EC6A762A5F05E300FB792C /* Resources */,
+				A9EC6A752A5EF49C00FB792C /* Sources */,
 				A9EC6A6F2A5EF21F00FB792C /* Info.plist */,
 			);
 			path = VarejoInov;
+			sourceTree = "<group>";
+		};
+		A9EC6A752A5EF49C00FB792C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A822A5F09A100FB792C /* Components */,
+				A9EC6A812A5F099800FB792C /* Extensions */,
+				A9EC6A802A5F099200FB792C /* Models */,
+				A9EC6A7A2A5F083A00FB792C /* DependencyInjection */,
+				A9EC6A772A5F061800FB792C /* Features */,
+				A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */,
+				A9EC6A782A5F063A00FB792C /* VarejoInovFlowController.swift */,
+				A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A9EC6A762A5F05E300FB792C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A6A2A5EF21F00FB792C /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A9EC6A772A5F061800FB792C /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A912A5F0CEE00FB792C /* SubDomainScreen */,
+				A9EC6A832A5F09D400FB792C /* LoginScreen */,
+				A9EC6A842A5F0A1300FB792C /* MainScreen */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A9EC6A7A2A5F083A00FB792C /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A7B2A5F084900FB792C /* ViewControllers */,
+			);
+			path = DependencyInjection;
+			sourceTree = "<group>";
+		};
+		A9EC6A7B2A5F084900FB792C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A7C2A5F086100FB792C /* ViewControllerFactory.swift */,
+				A9EC6A7E2A5F087500FB792C /* ViewControllerFactoryProtocol.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A9EC6A802A5F099200FB792C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A9EC6A812A5F099800FB792C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A942A5F203500FB792C /* UITextField+ Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A9EC6A822A5F09A100FB792C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A9EC6A832A5F09D400FB792C /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A862A5F0A2800FB792C /* ViewModel */,
+				A9EC6A852A5F0A2100FB792C /* View */,
+				A9EC6A8D2A5F0CC500FB792C /* LoginScreenViewController.swift */,
+				A9EC6A8F2A5F0CD400FB792C /* LoginScreenFlowDelegate.swift */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		A9EC6A842A5F0A1300FB792C /* MainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A882A5F0A3400FB792C /* ViewModel */,
+				A9EC6A872A5F0A3000FB792C /* View */,
+				A9EC6A962A5F3D2200FB792C /* MainScreenViewController.swift */,
+				A9EC6A982A5F3D2C00FB792C /* MainScreenFlowDelegate.swift */,
+			);
+			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		A9EC6A852A5F0A2100FB792C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A892A5F0CA700FB792C /* LoginScreenView.swift */,
+				A9EC6A8B2A5F0CB600FB792C /* LoginScreenViewDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9EC6A862A5F0A2800FB792C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A9EC6A872A5F0A3000FB792C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A9A2A5F3D3200FB792C /* MainScreenView.swift */,
+				A9EC6A9C2A5F3D4000FB792C /* MainScreenViewDelegate.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9EC6A882A5F0A3400FB792C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A9EC6A912A5F0CEE00FB792C /* SubDomainScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A9EC6A932A5F0CFA00FB792C /* ViewModel */,
+				A9EC6A922A5F0CF600FB792C /* View */,
+			);
+			path = SubDomainScreen;
+			sourceTree = "<group>";
+		};
+		A9EC6A922A5F0CF600FB792C /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A9EC6A932A5F0CFA00FB792C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9EC6A6E2A5EF21F00FB792C /* LaunchScreen.storyboard in Resources */,
 				A9EC6A6B2A5EF21F00FB792C /* Assets.xcassets in Resources */,
-				A9EC6A692A5EF21E00FB792C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,32 +299,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9EC6A662A5EF21E00FB792C /* ViewController.swift in Sources */,
+				A9EC6A9D2A5F3D4000FB792C /* MainScreenViewDelegate.swift in Sources */,
+				A9EC6A7F2A5F087500FB792C /* ViewControllerFactoryProtocol.swift in Sources */,
+				A9EC6A8C2A5F0CB600FB792C /* LoginScreenViewDelegate.swift in Sources */,
+				A9EC6A8E2A5F0CC500FB792C /* LoginScreenViewController.swift in Sources */,
 				A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */,
+				A9EC6A7D2A5F086100FB792C /* ViewControllerFactory.swift in Sources */,
+				A9EC6A792A5F063A00FB792C /* VarejoInovFlowController.swift in Sources */,
+				A9EC6A8A2A5F0CA700FB792C /* LoginScreenView.swift in Sources */,
+				A9EC6A992A5F3D2C00FB792C /* MainScreenFlowDelegate.swift in Sources */,
 				A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */,
+				A9EC6A972A5F3D2200FB792C /* MainScreenViewController.swift in Sources */,
+				A9EC6A9B2A5F3D3200FB792C /* MainScreenView.swift in Sources */,
+				A9EC6A902A5F0CD400FB792C /* LoginScreenFlowDelegate.swift in Sources */,
+				A9EC6A952A5F203500FB792C /* UITextField+ Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A9EC6A672A5EF21E00FB792C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A9EC6A682A5EF21E00FB792C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A9EC6A6C2A5EF21F00FB792C /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A9EC6A6D2A5EF21F00FB792C /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A9EC6A702A5EF21F00FB792C /* Debug */ = {
@@ -291,8 +444,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VarejoInov/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LoginScreenViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -319,8 +471,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VarejoInov/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LoginScreenViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
