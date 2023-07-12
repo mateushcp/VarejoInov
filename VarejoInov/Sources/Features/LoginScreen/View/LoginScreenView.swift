@@ -25,8 +25,8 @@ class LoginScreenView: UIView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "logo")
-        imageView.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 360).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 360).isActive = true
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -136,7 +136,7 @@ class LoginScreenView: UIView {
             backgroundView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            logoView.topAnchor.constraint(equalTo: topAnchor, constant: 120),
+            logoView.topAnchor.constraint(equalTo: topAnchor, constant: 90),
             logoView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             loginField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
