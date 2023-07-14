@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol LoginScreenFlowDelegate: AnyObject {
-    func navigateToMainScreen()
+    func navigateToMainScreen(data: [ResponseData])
     
 }

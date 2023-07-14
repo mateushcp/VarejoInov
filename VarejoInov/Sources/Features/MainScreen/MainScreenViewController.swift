@@ -11,11 +11,13 @@ import UIKit
 
 class MainScreenViewController: UIViewController {
     private let contentView: MainScreenView
+    private let viewModel: MainScreenViewModel
     weak var delegate: MainScreenFlowDelegate?
     
-    init(contentView: MainScreenView, delegate: MainScreenFlowDelegate) {
+    init(contentView: MainScreenView, delegate: MainScreenFlowDelegate, viewModel: MainScreenViewModel) {
         self.contentView = contentView
         self.delegate = delegate
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -23,11 +25,20 @@ class MainScreenViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.sendRequest()
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.delegate = self
+//        viewModel.delegate = self
         view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = true
         setupContentView()
+        
     }
     
     private func setupContentView() {
@@ -47,3 +58,11 @@ class MainScreenViewController: UIViewController {
 extension MainScreenViewController: MainScreenViewDelegate {
     
 }
+//
+//extension MainScreenViewController: MainScreenViewModelDelegate {
+//    func didReceiveResponseValues(_ responseValues: [ResponseData]) {
+//        contentView.responseValues = responseValues
+//        contentView.setupBarChartData()
+//    }
+//    
+//}

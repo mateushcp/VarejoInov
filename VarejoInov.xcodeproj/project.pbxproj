@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A9BEA0F12A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */; };
+		A9BEA0F32A61C4E300E06221 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F22A61C4E300E06221 /* RequestData.swift */; };
+		A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */; };
+		A9BEA0F72A61CBB900E06221 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F62A61CBB900E06221 /* MainScreenViewModel.swift */; };
+		A9BEA0F92A61E7D500E06221 /* MainScreenViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F82A61E7D500E06221 /* MainScreenViewModelDelegate.swift */; };
 		A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */; };
 		A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */; };
 		A9EC6A6B2A5EF21F00FB792C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9EC6A6A2A5EF21F00FB792C /* Assets.xcassets */; };
@@ -29,6 +34,11 @@
 		04CB4E4DC9E4E3EAE219CEB1 /* Pods_VarejoInov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VarejoInov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2134C3B9F073FAC2D75EDEB5 /* Pods-VarejoInov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.debug.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.debug.xcconfig"; sourceTree = "<group>"; };
 		597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.release.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.release.xcconfig"; sourceTree = "<group>"; };
+		A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETipoRelatorioAppFinanceiro.swift; sourceTree = "<group>"; };
+		A9BEA0F22A61C4E300E06221 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
+		A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
+		A9BEA0F62A61CBB900E06221 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
+		A9BEA0F82A61E7D500E06221 /* MainScreenViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModelDelegate.swift; sourceTree = "<group>"; };
 		A9EC6A5E2A5EF21E00FB792C /* VarejoInov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VarejoInov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +84,6 @@
 				2134C3B9F073FAC2D75EDEB5 /* Pods-VarejoInov.debug.xcconfig */,
 				597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -159,6 +168,8 @@
 		A9EC6A802A5F099200FB792C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */,
+				A9BEA0F22A61C4E300E06221 /* RequestData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -212,6 +223,7 @@
 		A9EC6A862A5F0A2800FB792C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -228,6 +240,8 @@
 		A9EC6A882A5F0A3400FB792C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A9BEA0F62A61CBB900E06221 /* MainScreenViewModel.swift */,
+				A9BEA0F82A61E7D500E06221 /* MainScreenViewModelDelegate.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -368,20 +382,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9BEA0F12A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift in Sources */,
 				A9EC6A9D2A5F3D4000FB792C /* MainScreenViewDelegate.swift in Sources */,
 				A9EC6A7F2A5F087500FB792C /* ViewControllerFactoryProtocol.swift in Sources */,
 				A9EC6A8C2A5F0CB600FB792C /* LoginScreenViewDelegate.swift in Sources */,
 				A9EC6A8E2A5F0CC500FB792C /* LoginScreenViewController.swift in Sources */,
+				A9BEA0F72A61CBB900E06221 /* MainScreenViewModel.swift in Sources */,
 				A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */,
+				A9BEA0F92A61E7D500E06221 /* MainScreenViewModelDelegate.swift in Sources */,
 				A9EC6A7D2A5F086100FB792C /* ViewControllerFactory.swift in Sources */,
 				A9EC6A792A5F063A00FB792C /* VarejoInovFlowController.swift in Sources */,
 				A9EC6A8A2A5F0CA700FB792C /* LoginScreenView.swift in Sources */,
 				A9EC6A992A5F3D2C00FB792C /* MainScreenFlowDelegate.swift in Sources */,
 				A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */,
 				A9EC6A972A5F3D2200FB792C /* MainScreenViewController.swift in Sources */,
+				A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */,
 				A9EC6A9B2A5F3D3200FB792C /* MainScreenView.swift in Sources */,
 				A9EC6A902A5F0CD400FB792C /* LoginScreenFlowDelegate.swift in Sources */,
 				A9EC6A952A5F203500FB792C /* UITextField+ Ext.swift in Sources */,
+				A9BEA0F32A61C4E300E06221 /* RequestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +457,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -492,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

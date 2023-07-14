@@ -8,5 +8,5 @@
 import Foundation
 protocol ViewControllerFactoryProtocol: AnyObject {
     func makeLoginScreenViewController(delegate: LoginScreenFlowDelegate) -> LoginScreenViewController
-    func makeMainScreenViewController(delegate: MainScreenFlowDelegate) -> MainScreenViewController
+    func makeMainScreenViewController(delegate: MainScreenFlowDelegate, data: [ResponseData]) -> MainScreenViewController
 }

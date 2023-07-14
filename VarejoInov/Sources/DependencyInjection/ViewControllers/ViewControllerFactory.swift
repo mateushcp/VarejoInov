@@ -11,14 +11,16 @@ import UIKit
 final class ViewControllerFactory: ViewControllerFactoryProtocol {
     func makeLoginScreenViewController(delegate: LoginScreenFlowDelegate) -> LoginScreenViewController {
         let contentView = LoginScreenView()
-        let viewController = LoginScreenViewController(contentView: contentView, delegate: delegate)
+        let viewModel = LoginScreenViewModel()
+        let viewController = LoginScreenViewController(contentView: contentView, delegate: delegate, viewModel: viewModel)
         
         return viewController
     }
     
-    func makeMainScreenViewController(delegate: MainScreenFlowDelegate) -> MainScreenViewController {
-        let contentView = MainScreenView()
-        let viewController = MainScreenViewController(contentView: contentView, delegate: delegate)
+    func makeMainScreenViewController(delegate: MainScreenFlowDelegate, data: [ResponseData]) -> MainScreenViewController {
+        let contentView = MainScreenView(data: data)
+        let viewModel = MainScreenViewModel()
+        let viewController = MainScreenViewController(contentView: contentView, delegate: delegate, viewModel: viewModel)
         
         return viewController
     }

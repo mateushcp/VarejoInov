@@ -31,8 +31,8 @@ class VarejoInovFlowController {
 }
 
 extension VarejoInovFlowController: LoginScreenFlowDelegate {
-    func navigateToMainScreen() {
-        let nextViewController = viewControllerFactory.makeMainScreenViewController(delegate: self)
+    func navigateToMainScreen(data: [ResponseData]) {
+        let nextViewController = viewControllerFactory.makeMainScreenViewController(delegate: self, data: data)
         self.navigationController?.pushViewController(nextViewController, animated: true)
     }
     

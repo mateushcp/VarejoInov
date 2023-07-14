@@ -9,11 +9,14 @@ import UIKit
 
 class LoginScreenViewController: UIViewController {
     private let contentView: LoginScreenView
+    private let viewModel: LoginScreenViewModel
+    private var responseValues: [ResponseData] = []
     public weak var delegate: LoginScreenFlowDelegate?
     
-    init(contentView: LoginScreenView, delegate: LoginScreenFlowDelegate) {
+    init(contentView: LoginScreenView, delegate: LoginScreenFlowDelegate, viewModel: LoginScreenViewModel) {
         self.contentView = contentView
         self.delegate = delegate
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -24,9 +27,12 @@ class LoginScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.delegate = self
+        viewModel.delegate = self
         setupContentView()
         setupNavBar()
-    }
+        viewModel.sendRequest()
+        
+        }
     
     private func setupNavBar() {
         self.navigationController?.navigationBar.isHidden = false
@@ -48,7 +54,15 @@ class LoginScreenViewController: UIViewController {
 
 extension LoginScreenViewController: LoginScreenViewDelegate {
     func didTapLogin() {
-        delegate?.navigateToMainScreen()
+        delegate?.navigateToMainScreen(data: self.responseValues)
     }
     
 }
+
+extension LoginScreenViewController: LoginScreenViewModelDelegate {
+    func didReceiveResponseValues(_ responseValues: [ResponseData]) {
+        self.responseValues = responseValues
+    }
+    
+}
+ 
