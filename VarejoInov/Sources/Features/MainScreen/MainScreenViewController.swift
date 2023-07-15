@@ -25,16 +25,10 @@ class MainScreenViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.sendRequest()
-
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         contentView.delegate = self
-//        viewModel.delegate = self
+        viewModel.delegate = self
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
         setupContentView()
@@ -56,13 +50,16 @@ class MainScreenViewController: UIViewController {
 }
 
 extension MainScreenViewController: MainScreenViewDelegate {
+    func getNewChart(startDate: Date?, endDate: Date?) {
+        viewModel.sendRequest(startDate: startDate, endDate: endDate)
+    }
+    
     
 }
-//
-//extension MainScreenViewController: MainScreenViewModelDelegate {
-//    func didReceiveResponseValues(_ responseValues: [ResponseData]) {
-//        contentView.responseValues = responseValues
-//        contentView.setupBarChartData()
-//    }
-//    
-//}
+
+extension MainScreenViewController: MainScreenViewModelDelegate {
+    func didReceiveResponseValues(_ responseValues: [ResponseData]) {
+        contentView.updateChart(data: responseValues)
+    }
+    
+}

@@ -159,7 +159,7 @@ class MainScreenView: UIView {
         
     }
     
-    func setupBarChartData(data: [ResponseData]) {
+    private func setupBarChartData(data: [ResponseData]) {
         var days: [String] = []
         var sales: [Double] = []
         
@@ -193,12 +193,14 @@ class MainScreenView: UIView {
     
     @objc
     private func datePickerValueChanged(_ sender: UIDatePicker) {
-        if picker1.isFirstResponder {
+        if sender == picker1 {
             selectedStartDate = sender.date
-            picker1.resignFirstResponder()
-        } else if picker2.isFirstResponder {
+        } else if sender == picker2 {
             selectedEndDate = sender.date
-            picker2.resignFirstResponder()
+        }
+        
+        if selectedEndDate != nil {
+            delegate?.getNewChart(startDate: selectedStartDate, endDate: selectedEndDate)
         }
     }
 
@@ -278,5 +280,11 @@ class MainScreenView: UIView {
             picker2.heightAnchor.constraint(equalToConstant: 28)
 
         ])
+    }
+    
+    func updateChart(data: [ResponseData]) {
+        responseValues = data
+        calculateValue(data: data)
+        setupBarChartData(data: data)
     }
 }

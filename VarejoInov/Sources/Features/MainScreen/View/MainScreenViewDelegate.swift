@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MainScreenViewDelegate: AnyObject {
-    
+    func getNewChart(startDate: Date?, endDate: Date?)
 }
