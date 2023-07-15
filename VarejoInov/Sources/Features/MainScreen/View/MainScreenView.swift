@@ -12,6 +12,8 @@ import Charts
 class MainScreenView: UIView {
     public weak var delegate: MainScreenViewDelegate?
     var responseValues: [ResponseData] = []
+    private var selectedStartDate: Date?
+    private var selectedEndDate: Date?
     
     // MARK: - Variables
     
@@ -80,16 +82,6 @@ class MainScreenView: UIView {
         return label
     }()
     
-    private let periodLabelValue: UILabel = {
-        let label = UILabel()
-        label.text = "Ultimos 3 dias"
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
     private let totalGeneralLabelValue: UILabel = {
         let label = UILabel()
         label.text = ""
@@ -98,6 +90,28 @@ class MainScreenView: UIView {
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let picker1: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.date = Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()
+        datePicker.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        datePicker.layer.cornerRadius = 8
+        datePicker.clipsToBounds = true
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        return datePicker
+    }()
+    
+    private let picker2: UIDatePicker = {
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.date = Date()
+        datePicker.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        datePicker.layer.cornerRadius = 8
+        datePicker.clipsToBounds = true
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        return datePicker
     }()
     
     private let barChartView: BarChartView = {
@@ -177,6 +191,22 @@ class MainScreenView: UIView {
         barChartView.notifyDataSetChanged()
     }
     
+    @objc
+    private func datePickerValueChanged(_ sender: UIDatePicker) {
+        if picker1.isFirstResponder {
+            selectedStartDate = sender.date
+            picker1.resignFirstResponder()
+        } else if picker2.isFirstResponder {
+            selectedEndDate = sender.date
+            picker2.resignFirstResponder()
+        }
+    }
+
+    private func setupGestures() {
+        picker1.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        picker2.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+    }
+
     private func setupUI(data: [ResponseData]) {
         addSubview(backgroundView)
         addSubview(billingText)
@@ -184,13 +214,17 @@ class MainScreenView: UIView {
         addSubview(periodLabel)
         addSubview(totalGeneralLabel)
         addSubview(companyNameLabelValue)
-        addSubview(periodLabelValue)
         addSubview(totalGeneralLabelValue)
         addSubview(barChartView)
         addSubview(circleView)
+        addSubview(picker1)
+        addSubview(picker2)
+
         
         setupBarChartData(data: data)
         setupConstraints()
+        setupGestures()
+
     }
     
     private func setupConstraints() {
@@ -218,12 +252,8 @@ class MainScreenView: UIView {
             companyNameLabelValue.topAnchor.constraint(equalTo: billingText.bottomAnchor, constant: 32),
             companyNameLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             companyNameLabelValue.heightAnchor.constraint(equalTo: billingText.heightAnchor, multiplier: 0.5),
-            
-            periodLabelValue.topAnchor.constraint(equalTo: companyNameLabelValue.bottomAnchor, constant: 10),
-            periodLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-            periodLabelValue.heightAnchor.constraint(equalTo: companyNameLabelValue.heightAnchor),
-            
-            totalGeneralLabelValue.topAnchor.constraint(equalTo: periodLabelValue.bottomAnchor, constant: 10),
+  
+            totalGeneralLabelValue.topAnchor.constraint(equalTo: picker1.bottomAnchor, constant: 10),
             totalGeneralLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             totalGeneralLabelValue.heightAnchor.constraint(equalTo: companyNameLabelValue.heightAnchor),
             
@@ -235,7 +265,18 @@ class MainScreenView: UIView {
             circleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             circleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
             circleView.bottomAnchor.constraint(equalTo: totalGeneralLabel.bottomAnchor, constant: 8),
-            circleView.heightAnchor.constraint(equalTo: billingText.heightAnchor, constant: 60)
+            circleView.heightAnchor.constraint(equalTo: billingText.heightAnchor, constant: 60),
+            
+            picker1.centerYAnchor.constraint(equalTo: periodLabel.centerYAnchor),
+            picker1.trailingAnchor.constraint(equalTo: picker2.leadingAnchor, constant: -8),
+            picker1.widthAnchor.constraint(equalToConstant: 100),
+            picker1.heightAnchor.constraint(equalToConstant: 28),
+            
+            picker2.centerYAnchor.constraint(equalTo: periodLabel.centerYAnchor),
+            picker2.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
+            picker2.widthAnchor.constraint(equalToConstant: 100),
+            picker2.heightAnchor.constraint(equalToConstant: 28)
+
         ])
     }
 }
