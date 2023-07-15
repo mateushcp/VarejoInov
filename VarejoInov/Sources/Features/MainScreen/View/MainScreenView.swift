@@ -92,7 +92,7 @@ class MainScreenView: UIView {
     
     private let totalGeneralLabelValue: UILabel = {
         let label = UILabel()
-        label.text = "20.560,29 R$"
+        label.text = ""
         label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
@@ -125,6 +125,7 @@ class MainScreenView: UIView {
     init(data: [ResponseData]) {
         super.init(frame: .zero)
         setupUI(data: data)
+        calculateValue(data: data)
     }
     
     required init?(coder: NSCoder) {
@@ -132,6 +133,17 @@ class MainScreenView: UIView {
     }
     
     // MARK: - Private Functions
+    
+    private func calculateValue(data: [ResponseData]) {
+        var totalValue: Double = 0
+        
+        for entry in data {
+            totalValue += entry.value
+        }
+        let formattedTotalValue = String(format: "%.2f", totalValue)
+        totalGeneralLabelValue.text = formattedTotalValue + " R$"
+        
+    }
     
     func setupBarChartData(data: [ResponseData]) {
         var days: [String] = []
