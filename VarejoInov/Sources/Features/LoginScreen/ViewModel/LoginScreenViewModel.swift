@@ -14,6 +14,31 @@ protocol LoginScreenViewModelDelegate: AnyObject {
 
 class LoginScreenViewModel {
     weak public var delegate: LoginScreenViewModelDelegate?
+    
+    func sendAuthRequest() {
+        let url = URL(string: "https://seuservidor.com/api/auth")!
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let authData = AuthRequestData(codigo: 2, senha: "", perfil: PerfilData(lst_perm: [PermData(nome: "apps-financeiro")]))
+        
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(authData)
+            request.httpBody = jsonData
+            
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                // ... Tratar a resposta do servidor (data, response, error)
+            }
+            
+            task.resume()
+        } catch {
+            print("Error encoding request data: \(error.localizedDescription)")
+        }
+    }
 
     func sendRequest() {
         let url = URL(string: "https://padariaaraujols.inovautomacao.com.br/api/relatorioappfinanceiro")!

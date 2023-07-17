@@ -12,6 +12,13 @@ class LoginScreenView: UIView {
     public weak var delegate: LoginScreenViewDelegate?
     
     // MARK: - variables
+    private var isLoginButtonEnabled: Bool = false {
+            didSet {
+                loginButton.isEnabled = isLoginButtonEnabled
+                loginButton.backgroundColor = isLoginButtonEnabled ? UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0) : UIColor(red: 218/255, green: 221/255, blue: 223/255, alpha: 1.0)
+            }
+        }
+    
     private let backgroundView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -119,6 +126,18 @@ class LoginScreenView: UIView {
         delegate?.didTapLogin()
     }
     
+    private func setupButtonIsEnabled() {
+        isLoginButtonEnabled = false
+        loginField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        passwordField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+    }
+    
+    @objc private func textFieldDidChange() {
+        let hasUsername = !(loginField.text?.isEmpty ?? true)
+        let hasPassword = !(passwordField.text?.isEmpty ?? true)
+        isLoginButtonEnabled = hasUsername && hasPassword
+    }
+    
     private func setupUI() {
         addSubview(backgroundView)
         addSubview(loginField)
@@ -127,6 +146,7 @@ class LoginScreenView: UIView {
         addSubview(loginButton)
         
         setupConstraints()
+        setupButtonIsEnabled()
     }
     
     private func setupConstraints() {

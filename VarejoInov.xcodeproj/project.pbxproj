@@ -12,6 +12,8 @@
 		A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */; };
 		A9BEA0F72A61CBB900E06221 /* MainScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F62A61CBB900E06221 /* MainScreenViewModel.swift */; };
 		A9BEA0F92A61E7D500E06221 /* MainScreenViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F82A61E7D500E06221 /* MainScreenViewModelDelegate.swift */; };
+		A9BEA0FE2A65E32800E06221 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0FD2A65E32800E06221 /* UserDefaults.swift */; };
+		A9BEA1002A65E7DC00E06221 /* AuthRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0FF2A65E7DC00E06221 /* AuthRequestData.swift */; };
 		A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */; };
 		A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */; };
 		A9EC6A6B2A5EF21F00FB792C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9EC6A6A2A5EF21F00FB792C /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 		A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
 		A9BEA0F62A61CBB900E06221 /* MainScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModel.swift; sourceTree = "<group>"; };
 		A9BEA0F82A61E7D500E06221 /* MainScreenViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewModelDelegate.swift; sourceTree = "<group>"; };
+		A9BEA0FD2A65E32800E06221 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		A9BEA0FF2A65E7DC00E06221 /* AuthRequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRequestData.swift; sourceTree = "<group>"; };
 		A9EC6A5E2A5EF21E00FB792C /* VarejoInov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VarejoInov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9EC6A612A5EF21E00FB792C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A9EC6A632A5EF21E00FB792C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +91,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A9BEA0FC2A65E31900E06221 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				A9BEA0FD2A65E32800E06221 /* UserDefaults.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
 		A9EC6A552A5EF21E00FB792C = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +130,7 @@
 		A9EC6A752A5EF49C00FB792C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A9BEA0FC2A65E31900E06221 /* UserDefaults */,
 				A9EC6A822A5F09A100FB792C /* Components */,
 				A9EC6A812A5F099800FB792C /* Extensions */,
 				A9EC6A802A5F099200FB792C /* Models */,
@@ -170,6 +183,7 @@
 			children = (
 				A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */,
 				A9BEA0F22A61C4E300E06221 /* RequestData.swift */,
+				A9BEA0FF2A65E7DC00E06221 /* AuthRequestData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -390,6 +404,7 @@
 				A9BEA0F72A61CBB900E06221 /* MainScreenViewModel.swift in Sources */,
 				A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */,
 				A9BEA0F92A61E7D500E06221 /* MainScreenViewModelDelegate.swift in Sources */,
+				A9BEA1002A65E7DC00E06221 /* AuthRequestData.swift in Sources */,
 				A9EC6A7D2A5F086100FB792C /* ViewControllerFactory.swift in Sources */,
 				A9EC6A792A5F063A00FB792C /* VarejoInovFlowController.swift in Sources */,
 				A9EC6A8A2A5F0CA700FB792C /* LoginScreenView.swift in Sources */,
@@ -398,6 +413,7 @@
 				A9EC6A972A5F3D2200FB792C /* MainScreenViewController.swift in Sources */,
 				A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */,
 				A9EC6A9B2A5F3D3200FB792C /* MainScreenView.swift in Sources */,
+				A9BEA0FE2A65E32800E06221 /* UserDefaults.swift in Sources */,
 				A9EC6A902A5F0CD400FB792C /* LoginScreenFlowDelegate.swift in Sources */,
 				A9EC6A952A5F203500FB792C /* UITextField+ Ext.swift in Sources */,
 				A9BEA0F32A61C4E300E06221 /* RequestData.swift in Sources */,
