@@ -7,6 +7,10 @@
 
 import Foundation
 
+public struct Carro {
+    
+}
+
 public struct RequestData: Codable {
     let data1: String
     let data2: String
@@ -21,4 +25,9 @@ public struct EmpData: Codable {
 public struct ResponseData: Codable {
     let value: Double
     let label: String
+}
+
+public enum LoginResult {
+    case succes
+    case failed
 }

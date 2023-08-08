@@ -20,3 +20,20 @@ struct PerfilData: Codable {
 struct PermData: Codable {
     let nome: String
 }
+
+struct AuthResponse: Codable {
+    let codigo: Int
+    let nome: String
+    let barras: String?
+    let senha: String?
+    let endereco: String?
+    let bio: String?
+    let compl: String?
+    let perfil: String?
+    let hr_noturno: String?
+    let atend: Bool
+    let tbpr: String?
+    let ativo: Bool
+    let lst_emp: String?
+    let usr_alt: Int
+}

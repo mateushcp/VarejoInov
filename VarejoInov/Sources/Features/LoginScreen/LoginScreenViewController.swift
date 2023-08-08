@@ -11,6 +11,8 @@ class LoginScreenViewController: UIViewController {
     private let contentView: LoginScreenView
     private let viewModel: LoginScreenViewModel
     private var responseValues: [ResponseData] = []
+    private var user: Int?
+    private var passwordTyped: String?
     public weak var delegate: LoginScreenFlowDelegate?
     
     init(contentView: LoginScreenView, delegate: LoginScreenFlowDelegate, viewModel: LoginScreenViewModel) {
@@ -30,9 +32,25 @@ class LoginScreenViewController: UIViewController {
         viewModel.delegate = self
         setupContentView()
         setupNavBar()
-        viewModel.sendRequest()
-        
+        if let domain = UserDefaultsManager.shared.subdomain {
+            viewModel.sendRequest()
         }
+    }
+    
+    private func handleLoginResult(result: LoginResult) {
+        DispatchQueue.main.async {
+            switch result {
+            case .succes:
+                self.delegate?.navigateToMainScreen(data: self.responseValues)
+                
+            case .failed:
+                let alertController = UIAlertController(title: "Erro de login", message: "As credenciais digitadas estão incorretas. Por favor, tente novamente.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
     
     private func setupNavBar() {
         self.navigationController?.navigationBar.isHidden = false
@@ -53,15 +71,26 @@ class LoginScreenViewController: UIViewController {
 }
 
 extension LoginScreenViewController: LoginScreenViewDelegate {
-    func didTapLogin() {
-        delegate?.navigateToMainScreen(data: self.responseValues)
+    func sendLoginData(user: Int, password: String) {
+        self.viewModel.sendAuthRequest(login: user, password: password)
     }
     
+    func presentAlert(_ alertController: UIAlertController) {
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
 extension LoginScreenViewController: LoginScreenViewModelDelegate {
+    func loginResul(result: LoginResult) {
+        handleLoginResult(result: result)
+    }
+    
     func didReceiveResponseValues(_ responseValues: [ResponseData]) {
         self.responseValues = responseValues
+    }
+    
+    func didSetDomain() {
+        viewModel.sendRequest()
     }
     
 }

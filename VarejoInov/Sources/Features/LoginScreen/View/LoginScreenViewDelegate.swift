@@ -6,7 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LoginScreenViewDelegate: AnyObject {
-    func didTapLogin()
+    func sendLoginData(user: Int, password: String)
+    func presentAlert(_ alertController: UIAlertController)
+    func didSetDomain()
 }

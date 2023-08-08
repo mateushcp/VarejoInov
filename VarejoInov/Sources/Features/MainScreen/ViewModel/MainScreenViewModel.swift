@@ -10,17 +10,19 @@ import Foundation
 class MainScreenViewModel {
     weak public var delegate: MainScreenViewModelDelegate?
     
-    func sendRequest(startDate: Date?, endDate: Date?) {
-        let url = URL(string: "https://padariaaraujols.inovautomacao.com.br/api/relatorioappfinanceiro")!
+    func sendRequest(startDate: Date?, endDate: Date?, filter: ETipoRelatorioAppFinanceiro?) {
+        let url = URL(string: "https://supermercadodoisirmaos.inovautomacao.com.br/api/relatorioappfinanceiro")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
 
-        let requestData = RequestData(data1: startDate != nil ? dateFormatter.string(from: startDate!) : "",
-                                      data2: endDate != nil ? dateFormatter.string(from: endDate!) : "",
-                                      tipo: .vendaDia,
+        let requestData = RequestData(data1: startDate != nil ? dateFormatter.string(from: startDate!) : dateFormatter.string(from: today),
+                                      data2: endDate != nil ? dateFormatter.string(from: endDate!) : dateFormatter.string(from: today),
+                                      tipo: filter ?? .vendaDia,
                                       emp: EmpData(codigo: 1))
 
         do {

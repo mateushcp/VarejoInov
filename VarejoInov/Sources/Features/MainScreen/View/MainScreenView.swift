@@ -19,9 +19,7 @@ class MainScreenView: UIView {
     
     private let circleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
-        view.layer.borderColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0).cgColor
-        view.layer.borderWidth = 2
+        view.backgroundColor = UIColor(red: 253/255, green: 253/255, blue: 253/255, alpha: 1.0)
         view.layer.cornerRadius = 16
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -36,11 +34,20 @@ class MainScreenView: UIView {
         return imageView
     }()
     
+    private let welcomeText: UILabel = {
+        let label = UILabel()
+        label.text = "Bem-vindo!"
+        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.font = UIFont.systemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let billingText: UILabel = {
         let label = UILabel()
         label.text = "Faturamento"
-        label.textColor = UIColor(red: 44/255, green: 143/255, blue: 174/255, alpha: 1.0)
-        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -128,7 +135,6 @@ class MainScreenView: UIView {
         chartView.xAxis.drawGridLinesEnabled = false
         chartView.barData?.setValueTextColor(.white)
         chartView.barData?.barWidth = 60.0
-        chartView.xAxis.labelRotationAngle = -90
         chartView.doubleTapToZoomEnabled = false
 
         return chartView
@@ -164,7 +170,22 @@ class MainScreenView: UIView {
         var sales: [Double] = []
         
         for data in data {
-            days.append(data.label)
+            var dayLabel = data.label
+            
+            if dayLabel == "Cartão Crédito" {
+                dayLabel = "Credito"
+            } else if dayLabel == "Cartão Débito" {
+                dayLabel = "Débito"
+            } else if dayLabel == "Caderneta" {
+                dayLabel = "Caderno"
+            }
+            
+            let components = dayLabel.split(separator: "/")
+            if let day = components.first {
+                days.append(String(day))
+            } else {
+                days.append(dayLabel)
+            }
             sales.append(data.value)
         }
         
@@ -190,6 +211,7 @@ class MainScreenView: UIView {
         
         barChartView.notifyDataSetChanged()
     }
+
     
     @objc
     private func datePickerValueChanged(_ sender: UIDatePicker) {
@@ -201,6 +223,7 @@ class MainScreenView: UIView {
         
         if selectedEndDate != nil {
             delegate?.getNewChart(startDate: selectedStartDate, endDate: selectedEndDate)
+            delegate?.setFilterDate(startDate: selectedStartDate, endDate: selectedEndDate)
         }
     }
 
@@ -211,14 +234,16 @@ class MainScreenView: UIView {
 
     private func setupUI(data: [ResponseData]) {
         addSubview(backgroundView)
-        addSubview(billingText)
-        addSubview(companyNameLabel)
-        addSubview(periodLabel)
-        addSubview(totalGeneralLabel)
-        addSubview(companyNameLabelValue)
-        addSubview(totalGeneralLabelValue)
         addSubview(barChartView)
         addSubview(circleView)
+        addSubview(welcomeText)
+        circleView.addSubview(billingText)
+        circleView.addSubview(companyNameLabel)
+        circleView.addSubview(periodLabel)
+        circleView.addSubview(totalGeneralLabel)
+        circleView.addSubview(companyNameLabelValue)
+        circleView.addSubview(totalGeneralLabelValue)
+        circleView.addSubview(welcomeText)
         addSubview(picker1)
         addSubview(picker2)
 
@@ -236,12 +261,15 @@ class MainScreenView: UIView {
             backgroundView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            billingText.topAnchor.constraint(equalTo: topAnchor, constant: 42),
-            billingText.centerXAnchor.constraint(equalTo: centerXAnchor),
+            welcomeText.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            welcomeText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
-            companyNameLabel.topAnchor.constraint(equalTo: billingText.bottomAnchor, constant: 32),
+            billingText.topAnchor.constraint(equalTo: circleView.topAnchor, constant: 12),
+            billingText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            
+            companyNameLabel.topAnchor.constraint(equalTo: billingText.bottomAnchor, constant: 8),
             companyNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            companyNameLabel.heightAnchor.constraint(equalTo: billingText.heightAnchor, multiplier: 0.5),
+            companyNameLabel.heightAnchor.constraint(equalTo: welcomeText.heightAnchor, multiplier: 0.5),
             
             periodLabel.topAnchor.constraint(equalTo: companyNameLabel.bottomAnchor, constant: 10),
             periodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
@@ -251,9 +279,9 @@ class MainScreenView: UIView {
             totalGeneralLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             totalGeneralLabel.heightAnchor.constraint(equalTo: companyNameLabel.heightAnchor),
             
-            companyNameLabelValue.topAnchor.constraint(equalTo: billingText.bottomAnchor, constant: 32),
+            companyNameLabelValue.topAnchor.constraint(equalTo: companyNameLabel.topAnchor),
             companyNameLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-            companyNameLabelValue.heightAnchor.constraint(equalTo: billingText.heightAnchor, multiplier: 0.5),
+            companyNameLabelValue.heightAnchor.constraint(equalTo: welcomeText.heightAnchor, multiplier: 0.5),
   
             totalGeneralLabelValue.topAnchor.constraint(equalTo: picker1.bottomAnchor, constant: 10),
             totalGeneralLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
@@ -266,8 +294,8 @@ class MainScreenView: UIView {
             
             circleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             circleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
-            circleView.bottomAnchor.constraint(equalTo: totalGeneralLabel.bottomAnchor, constant: 8),
-            circleView.heightAnchor.constraint(equalTo: billingText.heightAnchor, constant: 60),
+            circleView.topAnchor.constraint(equalTo: welcomeText.bottomAnchor, constant: 16),
+            circleView.heightAnchor.constraint(equalToConstant: 130),
             
             picker1.centerYAnchor.constraint(equalTo: periodLabel.centerYAnchor),
             picker1.trailingAnchor.constraint(equalTo: picker2.leadingAnchor, constant: -8),
