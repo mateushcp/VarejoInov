@@ -87,7 +87,9 @@ extension MainScreenViewController: MainScreenViewDelegate {
 
 extension MainScreenViewController: MainScreenViewModelDelegate {
     func didReceiveResponseValues(_ responseValues: [ResponseData]) {
-        contentView.updateChart(data: responseValues)
+        DispatchQueue.main.async {
+            self.contentView.updateChart(data: responseValues)
+        }
     }
     
 }
@@ -95,7 +97,7 @@ extension MainScreenViewController: MainScreenViewModelDelegate {
 extension MainScreenViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 0 {
-            print("deu bom")
+            viewModel.sendDefaultSalesRequest()
         } else if item.tag == 1 {
             presentProfileModal()
         } else if item.tag == 2 {
