@@ -108,6 +108,57 @@ class LoginScreenViewModel {
         }
     }
     
+    func getProfileData() {
+        if let subdomain = UserDefaultsManager.shared.subdomain,
+           let url = URL(string: "https://\(subdomain).inovautomacao.com.br/api/empresa/lst") {
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let emptyBody = EmptyRequestBody()
+            
+            do {
+                let encoder = JSONEncoder()
+                let jsonData = try encoder.encode(emptyBody)
+                request.httpBody = jsonData
+                
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                
+                let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+                    if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let responseData = data else {
+                        print("No response data")
+                        return
+                    }
+                    
+                    do {
+                        let decoder = JSONDecoder()
+                        let profileResponse = try decoder.decode([ProfileResponseModel].self, from: responseData)
+                        
+                        if let profile = profileResponse.first {
+                            UserDefaultsManager.shared.nome = profile.nome
+                            UserDefaultsManager.shared.cpfCnpj = profile.cpfcnpj
+                            UserDefaultsManager.shared.telefone = profile.endereco.tel2
+                            UserDefaultsManager.shared.enderecoRua = profile.endereco.logradouro
+                            UserDefaultsManager.shared.enderecoNumero = profile.endereco.nro
+                        }
+                    } catch {
+                        print("Error decoding response data: \(error.localizedDescription)")
+                    }
+                }
+                
+                task.resume()
+            } catch {
+                print("Error encoding request data: \(error.localizedDescription)")
+            }
+        } else {
+            print("Subdomain not found in UserDefaults.")
+        }
+    }
+    
     func getCurrentDate() -> (data1: String, data2: String) {
         let currentDate = Date()
         let dateFormatter = DateFormatter()

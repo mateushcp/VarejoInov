@@ -39,5 +39,12 @@ extension VarejoInovFlowController: LoginScreenFlowDelegate {
 }
 
 extension VarejoInovFlowController: MainScreenFlowDelegate {
-    
+    func userLoggedOut() {
+        if let navigationController = self.navigationController {
+            navigationController.viewControllers = []
+            
+            let loginViewController = viewControllerFactory.makeLoginScreenViewController(delegate: self)
+            navigationController.setViewControllers([loginViewController], animated: true)
+        }
+    }
 }

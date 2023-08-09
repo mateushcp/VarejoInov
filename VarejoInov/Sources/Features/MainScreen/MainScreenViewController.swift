@@ -52,7 +52,7 @@ class MainScreenViewController: UIViewController {
         let tab2 = UITabBarItem(title: "Perfil", image: UIImage(named: "profile")?.resized(to: CGSize(width: 25, height: 25)), tag: 1)
         let tab3 = UITabBarItem(title: "Filtros", image: UIImage(named: "filters")?.resized(to: CGSize(width: 25, height: 25)), tag: 2)
         let tab4 = UITabBarItem(title: "Sair", image: UIImage(named: "leave")?.resized(to: CGSize(width: 25, height: 25)), tag: 3)
-            
+        
         tabBar.items = [tab1, tab2, tab3, tab4]
         tabBar.delegate = self
         
@@ -97,12 +97,35 @@ extension MainScreenViewController: UITabBarDelegate {
         if item.tag == 0 {
             print("deu bom")
         } else if item.tag == 1 {
-            // Carregar o conteúdo para a segunda tab
+            presentProfileModal()
         } else if item.tag == 2 {
             presentFilters()
+        } else if item.tag == 3 {
+            handleLogout()
         }
         
         tabBar.selectedItem = item
+    }
+    
+    func handleLogout() {
+        UserDefaultsManager.shared.subdomain = nil
+        delegate?.userLoggedOut()
+    }
+    
+    func presentProfileModal() {
+        let name = UserDefaultsManager.shared.nome ?? "Nome não disponível"
+        let cnpj = UserDefaultsManager.shared.cpfCnpj ?? "CPF/CNPJ não disponível"
+        let tel = UserDefaultsManager.shared.telefone ?? "Telefone não disponível"
+        let street = UserDefaultsManager.shared.enderecoRua ?? "Endereço não disponível"
+        let number = UserDefaultsManager.shared.enderecoNumero ?? ""
+        let profileInfo = "Nome: \(name)\nCPF/CNPJ: \(cnpj)\nTelefone: \(tel)\nEndereço: \(street) \(number)"
+        
+        let alertController = UIAlertController(title: "Perfil", message: profileInfo, preferredStyle: .alert)
+        
+        let okayAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okayAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     func presentFilters() {
@@ -157,4 +180,3 @@ extension MainScreenViewController: UITabBarDelegate {
         
     }
 }
-

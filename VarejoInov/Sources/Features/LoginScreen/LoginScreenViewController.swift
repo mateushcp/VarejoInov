@@ -32,8 +32,16 @@ class LoginScreenViewController: UIViewController {
         viewModel.delegate = self
         setupContentView()
         setupNavBar()
+        handleFirstAcces()
+    }
+    
+    private func handleFirstAcces() {
         if let domain = UserDefaultsManager.shared.subdomain {
             viewModel.sendRequest()
+        }
+        
+        if UserDefaultsManager.shared.nome == nil {
+            viewModel.getProfileData()
         }
     }
     
@@ -81,6 +89,7 @@ extension LoginScreenViewController: LoginScreenViewDelegate {
 }
 
 extension LoginScreenViewController: LoginScreenViewModelDelegate {
+    
     func loginResul(result: LoginResult) {
         handleLoginResult(result: result)
     }
@@ -91,6 +100,7 @@ extension LoginScreenViewController: LoginScreenViewModelDelegate {
     
     func didSetDomain() {
         viewModel.sendRequest()
+        viewModel.getProfileData()
     }
     
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MainScreenFlowDelegate: AnyObject {
-    
+    func userLoggedOut()
 }

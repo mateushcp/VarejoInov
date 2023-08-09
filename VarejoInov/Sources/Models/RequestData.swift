@@ -31,3 +31,7 @@ public enum LoginResult {
     case succes
     case failed
 }
+
+struct EmptyRequestBody: Encodable {
+    
+}

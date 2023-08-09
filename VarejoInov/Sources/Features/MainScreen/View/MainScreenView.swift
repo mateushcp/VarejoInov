@@ -81,7 +81,8 @@ class MainScreenView: UIView {
     
     private let companyNameLabelValue: UILabel = {
         let label = UILabel()
-        label.text = "Inov"
+        let cnpj = UserDefaultsManager.shared.cpfCnpj ?? "CPF/CNPJ não disponível"
+        label.text = cnpj.formatCPFCNPJ(cnpj)
         label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right

@@ -37,3 +37,40 @@ struct AuthResponse: Codable {
     let lst_emp: String?
     let usr_alt: Int
 }
+
+struct ProfileResponseModel: Codable {
+    struct Endereco: Codable {
+        struct Pais: Codable {
+            let codigo: String
+            let nome: String
+        }
+        
+        let cep: String
+        let logradouro: String
+        let nro: String
+        let compl: String
+        let bairro: String
+        let municipio: String
+        let municipio_codigo: Int
+        let uf: String
+        let tel1: String
+        let tel2: String
+        let pais: Pais
+    }
+    
+    let codigo: Int
+    let nome: String
+    let fantasia: String
+    let cpfcnpj: String
+    let ie: String
+    let im: String
+    let site: String
+    let email: String
+    let contato: String
+    let crt: Int
+    let endereco: Endereco
+    let ativo: Bool
+    let codigo_matriz: Int
+    let codigo_estorno_credito: String
+    let codigo_credito_presumido: String
+}
