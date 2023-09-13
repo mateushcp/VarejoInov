@@ -25,6 +25,7 @@ public struct EmpData: Codable {
 public struct ResponseData: Codable {
     let value: Double
     let label: String
+    let nro_cliente: Int?
 }
 
 public enum LoginResult {

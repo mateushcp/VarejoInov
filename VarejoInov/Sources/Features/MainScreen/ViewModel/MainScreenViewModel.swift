@@ -10,7 +10,7 @@ import Foundation
 class MainScreenViewModel {
     weak public var delegate: MainScreenViewModelDelegate?
     
-    func sendRequest(startDate: Date?, endDate: Date?, filter: ETipoRelatorioAppFinanceiro?) {
+    func sendRequest(startDate: Date?, endDate: Date?, filter: ETipoRelatorioAppFinanceiro?, code: Int?) {
         if let subdomain = UserDefaultsManager.shared.subdomain,
            let url = URL(string: "https://\(subdomain).inovautomacao.com.br/api/relatorioappfinanceiro") {
             var request = URLRequest(url: url)
@@ -24,7 +24,7 @@ class MainScreenViewModel {
             let requestData = RequestData(data1: startDate != nil ? dateFormatter.string(from: startDate!) : dateFormatter.string(from: today),
                                           data2: endDate != nil ? dateFormatter.string(from: endDate!) : dateFormatter.string(from: today),
                                           tipo: filter ?? .vendaDia,
-                                          emp: EmpData(codigo: 1))
+                                          emp: EmpData(codigo: code ?? 1))
             
             do {
                 let encoder = JSONEncoder()

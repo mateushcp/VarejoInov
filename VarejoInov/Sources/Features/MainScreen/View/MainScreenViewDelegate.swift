@@ -8,6 +8,6 @@
 import Foundation
 
 protocol MainScreenViewDelegate: AnyObject {
-    func getNewChart(startDate: Date?, endDate: Date?)
+    func getNewChart(startDate: Date?, endDate: Date?, code: Int?)
     func setFilterDate(startDate: Date?, endDate: Date?)
 }

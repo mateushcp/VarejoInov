@@ -14,6 +14,14 @@ class MainScreenView: UIView {
     var responseValues: [ResponseData] = []
     private var selectedStartDate: Date?
     private var selectedEndDate: Date?
+    private var totalValue: Double?
+    private var code: Int = 1
+    var shouldShowAxisInVertical: Bool = false
+    private var numberOfClients: [Int]? {
+        didSet {
+            updateNumberOfAndTicketValue()
+        }
+    }
     
     // MARK: - Variables
     
@@ -43,6 +51,16 @@ class MainScreenView: UIView {
         return label
     }()
     
+    private let nameText: UILabel = {
+        let label = UILabel()
+        let fantasyName = UserDefaultsManager.shared.fantasia ?? ""
+        label.text = "\(fantasyName) ▼ "
+        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let billingText: UILabel = {
         let label = UILabel()
         label.text = "Faturamento"
@@ -55,7 +73,7 @@ class MainScreenView: UIView {
     private let companyNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Empresa: "
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -64,7 +82,7 @@ class MainScreenView: UIView {
     private let periodLabel: UILabel = {
         let label = UILabel()
         label.text = "Periodo: "
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -73,8 +91,26 @@ class MainScreenView: UIView {
     private let totalGeneralLabel: UILabel = {
         let label = UILabel()
         label.text = "Total Geral: "
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let numberOfClientsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Nº.Clientes/Ticket Médio: "
+        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let numberOfAndTicketValue: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -83,7 +119,7 @@ class MainScreenView: UIView {
         let label = UILabel()
         let cnpj = UserDefaultsManager.shared.cpfCnpj ?? "CPF/CNPJ não disponível"
         label.text = cnpj.formatCPFCNPJ(cnpj)
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +129,7 @@ class MainScreenView: UIView {
     private let totalGeneralLabelValue: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -137,7 +173,7 @@ class MainScreenView: UIView {
         chartView.barData?.setValueTextColor(.white)
         chartView.barData?.barWidth = 60.0
         chartView.doubleTapToZoomEnabled = false
-
+        
         return chartView
     }()
     
@@ -147,6 +183,15 @@ class MainScreenView: UIView {
         super.init(frame: .zero)
         setupUI(data: data)
         calculateValue(data: data)
+        numberOfClients = data.compactMap { $0.nro_cliente }
+        let totalClientsInPeriod = numberOfClients?.reduce(0, +) ?? 0
+        if totalClientsInPeriod > 0 {
+            let ticketValue = totalValue! / Double(totalClientsInPeriod)
+            let formattedTicketValue = String(format: "%.2f", ticketValue)
+            numberOfAndTicketValue.text = "\(totalClientsInPeriod) / \(formattedTicketValue)"
+        } else {
+            numberOfAndTicketValue.text = "N/A"
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -161,9 +206,17 @@ class MainScreenView: UIView {
         for entry in data {
             totalValue += entry.value
         }
-        let formattedTotalValue = String(format: "%.2f", totalValue)
-        totalGeneralLabelValue.text = formattedTotalValue + " R$"
         
+        self.totalValue = totalValue
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = "R$"
+        numberFormatter.locale = Locale(identifier: "pt_BR")
+        
+        if let formattedTotalValue = numberFormatter.string(from: NSNumber(value: totalValue)) {
+            totalGeneralLabelValue.text = formattedTotalValue
+        }
     }
     
     private func setupBarChartData(data: [ResponseData]) {
@@ -212,7 +265,7 @@ class MainScreenView: UIView {
         
         barChartView.notifyDataSetChanged()
     }
-
+    
     
     @objc
     private func datePickerValueChanged(_ sender: UIDatePicker) {
@@ -223,36 +276,52 @@ class MainScreenView: UIView {
         }
         
         if selectedEndDate != nil {
-            delegate?.getNewChart(startDate: selectedStartDate, endDate: selectedEndDate)
+            delegate?.getNewChart(startDate: selectedStartDate, endDate: selectedEndDate, code: self.code)
             delegate?.setFilterDate(startDate: selectedStartDate, endDate: selectedEndDate)
         }
     }
-
+    
+    private func updateNumberOfAndTicketValue() {
+        guard let numberOfClients = numberOfClients else {
+            numberOfAndTicketValue.text = ""
+            return
+        }
+        
+        let sum = numberOfClients.reduce(0, +)
+        numberOfAndTicketValue.text = "\(sum)"
+    }
+    
     private func setupGestures() {
         picker1.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         picker2.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
+        
+        nameText.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(nameLabelTapped))
+        nameText.addGestureRecognizer(tapGestureRecognizer)
     }
-
+    
     private func setupUI(data: [ResponseData]) {
         addSubview(backgroundView)
         addSubview(barChartView)
         addSubview(circleView)
         addSubview(welcomeText)
+        addSubview(nameText)
         circleView.addSubview(billingText)
         circleView.addSubview(companyNameLabel)
         circleView.addSubview(periodLabel)
         circleView.addSubview(totalGeneralLabel)
         circleView.addSubview(companyNameLabelValue)
         circleView.addSubview(totalGeneralLabelValue)
+        circleView.addSubview(numberOfClientsLabel)
+        circleView.addSubview(numberOfAndTicketValue)
         circleView.addSubview(welcomeText)
         addSubview(picker1)
         addSubview(picker2)
-
         
         setupBarChartData(data: data)
         setupConstraints()
         setupGestures()
-
+        
     }
     
     private func setupConstraints() {
@@ -262,8 +331,11 @@ class MainScreenView: UIView {
             backgroundView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            welcomeText.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            welcomeText.topAnchor.constraint(equalTo: topAnchor, constant: 34),
             welcomeText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            
+            nameText.topAnchor.constraint(equalTo: welcomeText.bottomAnchor),
+            nameText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             
             billingText.topAnchor.constraint(equalTo: circleView.topAnchor, constant: 12),
             billingText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
@@ -280,23 +352,31 @@ class MainScreenView: UIView {
             totalGeneralLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
             totalGeneralLabel.heightAnchor.constraint(equalTo: companyNameLabel.heightAnchor),
             
+            numberOfClientsLabel.topAnchor.constraint(equalTo: totalGeneralLabel.bottomAnchor, constant: 10),
+            numberOfClientsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
+            numberOfClientsLabel.heightAnchor.constraint(equalTo: companyNameLabel.heightAnchor),
+            
             companyNameLabelValue.topAnchor.constraint(equalTo: companyNameLabel.topAnchor),
             companyNameLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             companyNameLabelValue.heightAnchor.constraint(equalTo: welcomeText.heightAnchor, multiplier: 0.5),
-  
+            
             totalGeneralLabelValue.topAnchor.constraint(equalTo: picker1.bottomAnchor, constant: 10),
             totalGeneralLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             totalGeneralLabelValue.heightAnchor.constraint(equalTo: companyNameLabelValue.heightAnchor),
             
+            numberOfAndTicketValue.topAnchor.constraint(equalTo: numberOfClientsLabel.topAnchor),
+            numberOfAndTicketValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+            numberOfAndTicketValue.heightAnchor.constraint(equalTo: companyNameLabelValue.heightAnchor),
+            
             barChartView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
             barChartView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
             barChartView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            barChartView.heightAnchor.constraint(equalToConstant: 360),
+            barChartView.heightAnchor.constraint(equalToConstant: 320),
             
             circleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             circleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
-            circleView.topAnchor.constraint(equalTo: welcomeText.bottomAnchor, constant: 16),
-            circleView.heightAnchor.constraint(equalToConstant: 130),
+            circleView.topAnchor.constraint(equalTo: nameText.bottomAnchor, constant: 8),
+            circleView.heightAnchor.constraint(equalToConstant: 155),
             
             picker1.centerYAnchor.constraint(equalTo: periodLabel.centerYAnchor),
             picker1.trailingAnchor.constraint(equalTo: picker2.leadingAnchor, constant: -8),
@@ -307,13 +387,65 @@ class MainScreenView: UIView {
             picker2.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
             picker2.widthAnchor.constraint(equalToConstant: 100),
             picker2.heightAnchor.constraint(equalToConstant: 28)
-
+            
         ])
     }
     
     func updateChart(data: [ResponseData]) {
+        if shouldShowAxisInVertical  {
+            barChartView.xAxis.labelRotationAngle = 90
+        } else {
+            barChartView.xAxis.labelRotationAngle = 0
+        }
         responseValues = data
         calculateValue(data: data)
         setupBarChartData(data: data)
+        self.numberOfClients = data.compactMap { $0.nro_cliente }
+        updateTotalAndTicketValue(data: data)
     }
+    
+    private func updateTotalAndTicketValue(data: [ResponseData]) {
+        let totalClientsInPeriod = data.compactMap { $0.nro_cliente }.reduce(0, +)
+        if totalClientsInPeriod > 0 {
+            let totalValue = data.reduce(0) { $0 + $1.value }
+            let ticketValue = totalValue / Double(totalClientsInPeriod)
+            let formattedTicketValue = String(format: "%.2f", ticketValue)
+            numberOfAndTicketValue.text = "\(totalClientsInPeriod) / \(formattedTicketValue)"
+        } else {
+            numberOfAndTicketValue.text = "N/A"
+        }
+    }
+    
+    @objc private func nameLabelTapped() {
+        showCompanySelectionAlert()
+    }
+    
+    private func showCompanySelectionAlert() {
+        let alertController = UIAlertController(title: "Selecionar Empresa", message: "Escolha uma empresa:", preferredStyle: .actionSheet)
+        
+        for profile in ProfileData.shared.profiles {
+            let action = UIAlertAction(title: profile.fantasia, style: .default) { [weak self] _ in
+                self?.updateCompanyInfo(with: profile)
+                self?.delegate?.getNewChart(startDate: self?.selectedStartDate, endDate: self?.selectedEndDate, code: profile.codigo)
+            }
+            alertController.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        if let presenter = delegate as? UIViewController {
+            presenter.present(alertController, animated: true, completion: nil)
+        }
+    }
+
+    private func updateCompanyInfo(with profile: ProfileResponseModel) {
+        nameText.text = "\(profile.fantasia) ▼ "
+        self.code = profile.codigo
+        let cnpj = profile.cpfcnpj ?? "CPF/CNPJ não disponível"
+        companyNameLabelValue.text = cnpj.formatCPFCNPJ(cnpj)
+        delegate?.getNewChart(startDate: self.selectedStartDate, endDate: self.selectedEndDate, code: self.code)
+    }
+
+
 }

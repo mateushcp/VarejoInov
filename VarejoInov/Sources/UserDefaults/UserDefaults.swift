@@ -18,6 +18,7 @@ class UserDefaultsManager {
     private let telefoneKey = "telefone"
     private let enderecoRuaKey = "enderecoRua"
     private let enderecoNumeroKey = "enderecoNumero"
+    private let fantasiaKey = "fantasia"
     
     private init() {}
     
@@ -73,6 +74,28 @@ class UserDefaultsManager {
         set {
             UserDefaults.standard.set(newValue, forKey: enderecoNumeroKey)
         }
+    }
+    
+    var fantasia: String? {
+        get {
+            return UserDefaults.standard.string(forKey: fantasiaKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: fantasiaKey)
+        }
+    }
+    
+    func savedDomains() -> [String] {
+           if let domains = UserDefaults.standard.array(forKey: "savedDomains") as? [String] {
+               return domains
+           }
+           return []
+       }
+    
+    func addDomain(_ domain: String) {
+        var domains = savedDomains()
+        domains.append(domain)
+        UserDefaults.standard.set(domains, forKey: "savedDomains")
     }
     
 }

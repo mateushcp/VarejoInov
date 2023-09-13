@@ -16,6 +16,7 @@ class MainScreenViewController: UIViewController {
     private var currentFilter: ETipoRelatorioAppFinanceiro? = .vendaDia
     private var startDate: Date?
     private var endDate: Date?
+    private var code: Int?
     
     init(contentView: MainScreenView, delegate: MainScreenFlowDelegate, viewModel: MainScreenViewModel) {
         self.contentView = contentView
@@ -66,7 +67,7 @@ class MainScreenViewController: UIViewController {
             tabBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tabBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tabBar.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tabBar.heightAnchor.constraint(equalToConstant: 80)
+            tabBar.heightAnchor.constraint(equalToConstant: 72)
         ])
     }
     
@@ -78,8 +79,9 @@ extension MainScreenViewController: MainScreenViewDelegate {
         self.endDate = endDate
     }
     
-    func getNewChart(startDate: Date?, endDate: Date?) {
-        viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: self.currentFilter)
+    func getNewChart(startDate: Date?, endDate: Date?, code: Int?) {
+        viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: self.currentFilter, code: code)
+        self.code = code
     }
     
     
@@ -135,24 +137,28 @@ extension MainScreenViewController: UITabBarDelegate {
         
         let salesByDayAction = UIAlertAction(title: "Vendas por Dia", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Vendas por Dia")
-            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter)
+            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            self.contentView.shouldShowAxisInVertical = false
         }
         
         let salesByHourAction = UIAlertAction(title: "Vendas por Hora", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Vendas por Hora")
             let calendar = Calendar.current
             let today = calendar.startOfDay(for: Date())
-            self.viewModel.sendRequest(startDate: today, endDate: today, filter: self.currentFilter)
+            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            self.contentView.shouldShowAxisInVertical = false
         }
         
         let paymentMethodsAction = UIAlertAction(title: "Formas de Pagamento", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Formas de Pagamento")
-            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter)
+            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            self.contentView.shouldShowAxisInVertical = true
         }
         
         let paymentMethodsNFAction = UIAlertAction(title: "Formas de Pagamento: NF Admin", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Formas de Pagamento NF Admin")
-            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter)
+            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            self.contentView.shouldShowAxisInVertical = true
         }
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)

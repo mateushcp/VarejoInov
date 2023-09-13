@@ -68,6 +68,12 @@ class LoginScreenViewController: UIViewController {
         view.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
+        if let currentDomain = UserDefaultsManager.shared.subdomain {
+               contentView.domainButton.setTitle(currentDomain, for: .normal)
+           }
+        contentView.domainButton.addTarget(self, action: #selector(presentDomainOptions), for: .touchUpInside)
+
+        
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: view.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -75,6 +81,66 @@ class LoginScreenViewController: UIViewController {
             contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    @objc
+    private func presentDomainOptions() {
+        let alertController = UIAlertController(title: "Escolher Domínio", message: nil, preferredStyle: .actionSheet)
+        
+        // Adicione ação para escolher o domínio atual
+        if let currentDomain = UserDefaultsManager.shared.subdomain {
+            let currentDomainAction = UIAlertAction(title: "Domínio Atual: \(currentDomain)", style: .default, handler: nil)
+            alertController.addAction(currentDomainAction)
+        }
+        
+        // Adicione ação para cada domínio cadastrado
+        let savedDomains = UserDefaultsManager.shared.savedDomains() // Implemente essa função em UserDefaultsManager
+        for domain in savedDomains {
+            let domainAction = UIAlertAction(title: domain, style: .default) { [weak self] _ in
+                UserDefaultsManager.shared.subdomain = domain
+                self?.contentView.domainButton.setTitle(domain, for: .normal)
+                self?.viewModel.sendRequest()
+                self?.viewModel.getProfileData()
+            }
+            alertController.addAction(domainAction)
+        }
+        
+        // Adicione ação para inserir um novo domínio
+        let newDomainAction = UIAlertAction(title: "Inserir/Alterar Domínio", style: .default) { [weak self] _ in
+            self?.presentNewDomainAlert()
+        }
+        alertController.addAction(newDomainAction)
+        
+        // Adicione ação para cancelar
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func presentNewDomainAlert() {
+        let alertController = UIAlertController(title: "Inserir Novo Domínio", message: nil, preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.placeholder = "Domínio"
+        }
+        
+        let confirmAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            guard let domain = alertController.textFields?.first?.text else { return }
+            UserDefaultsManager.shared.subdomain = domain
+            UserDefaultsManager.shared.addDomain(domain)
+            self?.contentView.domainButton.setTitle(domain, for: .normal)
+            self?.viewModel.sendRequest()
+            self?.viewModel.getProfileData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+
+
     
 }
 

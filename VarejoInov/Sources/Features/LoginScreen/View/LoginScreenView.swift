@@ -45,6 +45,10 @@ class LoginScreenView: UIView {
         field.layer.cornerRadius = 16
         field.textAlignment = .left
         field.placeholder = "Usuário"
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        field.attributedPlaceholder = NSAttributedString(string: "Usuário", attributes: placeholderAttributes)
+        field.textColor = .black
+        field.tintColor = .black
         field.backgroundColor = .white
         field.translatesAutoresizingMaskIntoConstraints = false
         let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 56))
@@ -64,7 +68,11 @@ class LoginScreenView: UIView {
         field.layer.cornerRadius = 16
         field.textAlignment = .left
         field.placeholder = "Senha"
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        field.attributedPlaceholder = NSAttributedString(string: "Senha", attributes: placeholderAttributes)
         field.backgroundColor = .white
+        field.textColor = .black
+        field.tintColor = .black
         field.isSecureTextEntry = true
         field.translatesAutoresizingMaskIntoConstraints = false
         let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 56))
@@ -102,7 +110,7 @@ class LoginScreenView: UIView {
         return button
     }()
     
-    private let domainButton: UIButton = {
+    let domainButton: UIButton = {
         let button = UIButton()
         button.setTitle("Escolher Empresa", for: .normal)
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -110,7 +118,7 @@ class LoginScreenView: UIView {
         button.layer.borderColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0).cgColor
         button.layer.borderWidth = 2
         button.setTitleColor(UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0), for: .normal)
-        button.addTarget(self, action: #selector(domainTapped), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(domainTapped), for: .touchUpInside)
         button.widthAnchor.constraint(equalToConstant: 160).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

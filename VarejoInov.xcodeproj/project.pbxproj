@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A94121732A82D9F300A635D5 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94121722A82D9F300A635D5 /* UIImage + Ext.swift */; };
 		A94121782A83403300A635D5 /* Strings + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94121772A83403300A635D5 /* Strings + Ext.swift */; };
+		A955C05E2AB1E7AE00663330 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955C05D2AB1E7AE00663330 /* ProfileData.swift */; };
 		A9BEA0F12A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */; };
 		A9BEA0F32A61C4E300E06221 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F22A61C4E300E06221 /* RequestData.swift */; };
 		A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */; };
@@ -40,6 +41,7 @@
 		597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.release.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.release.xcconfig"; sourceTree = "<group>"; };
 		A94121722A82D9F300A635D5 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
 		A94121772A83403300A635D5 /* Strings + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings + Ext.swift"; sourceTree = "<group>"; };
+		A955C05D2AB1E7AE00663330 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETipoRelatorioAppFinanceiro.swift; sourceTree = "<group>"; };
 		A9BEA0F22A61C4E300E06221 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +95,14 @@
 				597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A955C05C2AB1E7A200663330 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A955C05D2AB1E7AE00663330 /* ProfileData.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		A9BEA0FC2A65E31900E06221 /* UserDefaults */ = {
@@ -158,6 +168,7 @@
 		A9EC6A772A5F061800FB792C /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A955C05C2AB1E7A200663330 /* Shared */,
 				A9EC6A912A5F0CEE00FB792C /* SubDomainScreen */,
 				A9EC6A832A5F09D400FB792C /* LoginScreen */,
 				A9EC6A842A5F0A1300FB792C /* MainScreen */,
@@ -416,6 +427,7 @@
 				A9EC6A792A5F063A00FB792C /* VarejoInovFlowController.swift in Sources */,
 				A9EC6A8A2A5F0CA700FB792C /* LoginScreenView.swift in Sources */,
 				A9EC6A992A5F3D2C00FB792C /* MainScreenFlowDelegate.swift in Sources */,
+				A955C05E2AB1E7AE00663330 /* ProfileData.swift in Sources */,
 				A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */,
 				A9EC6A972A5F3D2200FB792C /* MainScreenViewController.swift in Sources */,
 				A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */,
@@ -558,6 +570,7 @@
 				INFOPLIST_FILE = VarejoInov/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LoginScreenViewController;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -586,6 +599,7 @@
 				INFOPLIST_FILE = VarejoInov/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LoginScreenViewController;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -88,7 +88,7 @@ class LoginScreenViewModel {
                                 let decodedResponse = try decoder.decode([ResponseData].self, from: responseData)
                                 self.delegate?.didReceiveResponseValues(decodedResponse)
                                 for data in decodedResponse {
-                                    print("Value: \(data.value), Label: \(data.label)")
+                                    print("Value: \(data.value), Label: \(data.label), nmro: \(data.nro_cliente)")
                                 }
                             } catch {
                                 print("Error decoding response data: \(error.localizedDescription)")
@@ -139,11 +139,15 @@ class LoginScreenViewModel {
                         let profileResponse = try decoder.decode([ProfileResponseModel].self, from: responseData)
                         
                         if let profile = profileResponse.first {
+                            ProfileData.shared.profiles = profileResponse
+
                             UserDefaultsManager.shared.nome = profile.nome
                             UserDefaultsManager.shared.cpfCnpj = profile.cpfcnpj
                             UserDefaultsManager.shared.telefone = profile.endereco.tel2
                             UserDefaultsManager.shared.enderecoRua = profile.endereco.logradouro
                             UserDefaultsManager.shared.enderecoNumero = profile.endereco.nro
+                            UserDefaultsManager.shared.fantasia = profile.fantasia
+
                         }
                     } catch {
                         print("Error decoding response data: \(error.localizedDescription)")
