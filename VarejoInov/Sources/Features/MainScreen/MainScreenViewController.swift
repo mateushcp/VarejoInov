@@ -100,6 +100,7 @@ extension MainScreenViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 0 {
             viewModel.sendDefaultSalesRequest()
+            self.currentFilter = .vendaDia
         } else if item.tag == 1 {
             presentProfileModal()
         } else if item.tag == 2 {

@@ -183,6 +183,8 @@ class MainScreenView: UIView {
         super.init(frame: .zero)
         setupUI(data: data)
         calculateValue(data: data)
+        self.selectedStartDate = getCurrentDate().data1
+        self.selectedEndDate = getCurrentDate().data2
         numberOfClients = data.compactMap { $0.nro_cliente }
         let totalClientsInPeriod = numberOfClients?.reduce(0, +) ?? 0
         if totalClientsInPeriod > 0 {
@@ -196,6 +198,17 @@ class MainScreenView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init error, not implemented")
+    }
+    
+    func getCurrentDate() -> (data1: Date, data2: Date) {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let data2 = currentDate
+        let data1 = Calendar.current.date(byAdding: .day, value: -3, to: currentDate)!
+        
+        return (data1, data2)
     }
     
     // MARK: - Private Functions

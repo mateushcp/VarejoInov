@@ -86,14 +86,12 @@ class LoginScreenViewController: UIViewController {
     private func presentDomainOptions() {
         let alertController = UIAlertController(title: "Escolher Domínio", message: nil, preferredStyle: .actionSheet)
         
-        // Adicione ação para escolher o domínio atual
         if let currentDomain = UserDefaultsManager.shared.subdomain {
             let currentDomainAction = UIAlertAction(title: "Domínio Atual: \(currentDomain)", style: .default, handler: nil)
             alertController.addAction(currentDomainAction)
         }
         
-        // Adicione ação para cada domínio cadastrado
-        let savedDomains = UserDefaultsManager.shared.savedDomains() // Implemente essa função em UserDefaultsManager
+        let savedDomains = UserDefaultsManager.shared.savedDomains()
         for domain in savedDomains {
             let domainAction = UIAlertAction(title: domain, style: .default) { [weak self] _ in
                 UserDefaultsManager.shared.subdomain = domain
@@ -104,18 +102,23 @@ class LoginScreenViewController: UIViewController {
             alertController.addAction(domainAction)
         }
         
-        // Adicione ação para inserir um novo domínio
         let newDomainAction = UIAlertAction(title: "Inserir/Alterar Domínio", style: .default) { [weak self] _ in
             self?.presentNewDomainAlert()
         }
         alertController.addAction(newDomainAction)
         
-        // Adicione ação para cancelar
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view // Substitua self.view pela vista apropriada
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // Defina as coordenadas apropriadas
+            popoverController.permittedArrowDirections = [] // Defina as direções apropriadas do popover
+        }
+        
         present(alertController, animated: true, completion: nil)
     }
+
     
     private func presentNewDomainAlert() {
         let alertController = UIAlertController(title: "Inserir Novo Domínio", message: nil, preferredStyle: .alert)
