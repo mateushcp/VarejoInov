@@ -98,4 +98,12 @@ class UserDefaultsManager {
         UserDefaults.standard.set(domains, forKey: "savedDomains")
     }
     
+    func removeDomain(_ domain: String) {
+        var domains = savedDomains()
+        if let index = domains.firstIndex(of: domain) {
+            domains.remove(at: index)
+            UserDefaults.standard.set(domains, forKey: "savedDomains")
+        }
+    }
+    
 }

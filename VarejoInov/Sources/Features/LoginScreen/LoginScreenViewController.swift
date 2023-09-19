@@ -38,6 +38,8 @@ class LoginScreenViewController: UIViewController {
     private func handleFirstAcces() {
         if let domain = UserDefaultsManager.shared.subdomain {
             viewModel.sendRequest()
+        } else {
+            contentView.domainButton.setTitle("Escolher Empresa", for: .normal)
         }
         
         if UserDefaultsManager.shared.nome == nil {
@@ -68,7 +70,7 @@ class LoginScreenViewController: UIViewController {
         view.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        if let currentDomain = UserDefaultsManager.shared.subdomain {
+        if let currentDomain = UserDefaultsManager.shared.savedDomains().first {
                contentView.domainButton.setTitle(currentDomain, for: .normal)
            }
         contentView.domainButton.addTarget(self, action: #selector(presentDomainOptions), for: .touchUpInside)
@@ -86,7 +88,7 @@ class LoginScreenViewController: UIViewController {
     private func presentDomainOptions() {
         let alertController = UIAlertController(title: "Escolher Domínio", message: nil, preferredStyle: .actionSheet)
         
-        if let currentDomain = UserDefaultsManager.shared.subdomain {
+        if let currentDomain = UserDefaultsManager.shared.savedDomains().first {
             let currentDomainAction = UIAlertAction(title: "Domínio Atual: \(currentDomain)", style: .default, handler: nil)
             alertController.addAction(currentDomainAction)
         }
@@ -117,8 +119,43 @@ class LoginScreenViewController: UIViewController {
         }
         
         present(alertController, animated: true, completion: nil)
+        
+        let removeDomainsAction = UIAlertAction(title: "Remover Domínios", style: .destructive) { [weak self] _ in
+            self?.presentRemoveDomainsAlert()
+        }
+        alertController.addAction(removeDomainsAction)
+    }
+    
+    private func presentRemoveDomainsAlert() {
+        let alertController = UIAlertController(title: "Remover Domínios", message: "Selecione um domínio para remover:", preferredStyle: .actionSheet)
+        
+        let savedDomains = UserDefaultsManager.shared.savedDomains()
+        
+        for domain in savedDomains {
+            let domainAction = UIAlertAction(title: domain, style: .default) { [weak self] _ in
+                self?.removeDomain(domain)
+            }
+            alertController.addAction(domainAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+        
+        present(alertController, animated: true, completion: nil)
     }
 
+    private func removeDomain(_ domain: String) {
+        UserDefaultsManager.shared.removeDomain(domain)
+        if UserDefaultsManager.shared.savedDomains().isEmpty {
+            contentView.domainButton.setTitle("Escolher Empresa", for: .normal)
+        }
+    }
     
     private func presentNewDomainAlert() {
         let alertController = UIAlertController(title: "Inserir Novo Domínio", message: nil, preferredStyle: .alert)
