@@ -13,7 +13,7 @@ class MainScreenViewController: UIViewController {
     private let contentView: MainScreenView
     private let viewModel: MainScreenViewModel
     weak var delegate: MainScreenFlowDelegate?
-    private var currentFilter: ETipoRelatorioAppFinanceiro? = .vendaDia
+    private var currentFilter: TipoRelatorioAppFinanceiro? = .VendaDia
     private var startDate: Date?
     private var endDate: Date?
     private var code: Int?
@@ -100,7 +100,7 @@ extension MainScreenViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 0 {
             viewModel.sendDefaultSalesRequest()
-            self.currentFilter = .vendaDia
+            self.currentFilter = .VendaDia
         } else if item.tag == 1 {
             presentProfileModal()
         } else if item.tag == 2 {
@@ -164,6 +164,11 @@ extension MainScreenViewController: UITabBarDelegate {
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         
+        if let popoverController = alertController.popoverPresentationController {
+               popoverController.sourceView = self.view
+               popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) 
+               popoverController.permittedArrowDirections = [] 
+           }
         alertController.addAction(salesByDayAction)
         alertController.addAction(salesByHourAction)
         alertController.addAction(paymentMethodsAction)
@@ -173,18 +178,18 @@ extension MainScreenViewController: UITabBarDelegate {
         present(alertController, animated: true, completion: nil)
     }
     
-    func handleFilters(filter: String) -> ETipoRelatorioAppFinanceiro {
+    func handleFilters(filter: String) -> TipoRelatorioAppFinanceiro {
         switch filter {
         case "Vendas por Dia":
-            return .vendaDia
+            return .VendaDia
         case "Vendas por Hora":
-            return .vendaHora
+            return .VendaHora
         case "Formas de Pagamento":
-            return .frmpgto
+            return .FormaPagamento
         case "Formas de Pagamento NF Admin":
-            return .frmpgtoAdmin
+            return .FormaPagamentoAdmin
         default:
-            return .vendaDia
+            return .VendaDia
         }
         
     }

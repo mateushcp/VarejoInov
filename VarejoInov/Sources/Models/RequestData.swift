@@ -14,7 +14,7 @@ public struct Carro {
 public struct RequestData: Codable {
     let data1: String
     let data2: String
-    let tipo: ETipoRelatorioAppFinanceiro
+    let tipo: TipoRelatorioAppFinanceiro
     let emp: EmpData
 }
 

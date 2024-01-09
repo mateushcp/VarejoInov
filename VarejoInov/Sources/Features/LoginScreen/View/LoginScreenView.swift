@@ -132,6 +132,8 @@ class LoginScreenView: UIView {
         
         setupKeyboardDismissal()
         configureDoneToolbarForKeyboard()
+        
+        registerForKeyboardNotifications()
     }
     
     required init?(coder: NSCoder) {
@@ -258,4 +260,21 @@ class LoginScreenView: UIView {
         
     }
     
+}
+
+extension LoginScreenView {
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.frame.origin.y = -keyboardSize.height / 2
+        }
+    }
+
+    @objc func keyboardWillHide(_ notification: Notification) {
+        self.frame.origin.y = 0
+    }
 }

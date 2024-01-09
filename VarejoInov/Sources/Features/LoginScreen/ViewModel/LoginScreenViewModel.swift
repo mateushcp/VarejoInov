@@ -61,7 +61,7 @@ class LoginScreenViewModel {
             request.httpMethod = "POST"
             let currentDate = getCurrentDate()
             
-            let requestData = RequestData(data1: currentDate.data1, data2: currentDate.data2, tipo: .vendaDia, emp: EmpData(codigo: 1))
+            let requestData = RequestData(data1: currentDate.data1, data2: currentDate.data2, tipo: .VendaDia, emp: EmpData(codigo: 1))
             
             do {
                 let encoder = JSONEncoder()
