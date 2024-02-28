@@ -12,20 +12,16 @@ public struct Carro {
 }
 
 public struct RequestData: Codable {
-    let data1: String
-    let data2: String
-    let tipo: TipoRelatorioAppFinanceiro
-    let emp: EmpData
-}
-
-public struct EmpData: Codable {
-    let codigo: Int
+    let DataInicial: String
+    let DataFinal: String
+    let Tipo: TipoRelatorioAppFinanceiro
+    let Empresa: Int
 }
 
 public struct ResponseData: Codable {
-    let value: Double
-    let label: String
-    let nro_cliente: Int?
+    let Value: Double
+    let Label: String
+    let NumeroCliente: Int?
 }
 
 public enum LoginResult {

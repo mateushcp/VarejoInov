@@ -17,12 +17,12 @@ class LoginScreenViewModel {
     
     func sendAuthRequest(login: Int, password: String) {
         if let subdomain = UserDefaultsManager.shared.subdomain,
-           let url = URL(string: "https://\(subdomain).inovautomacao.com.br/api/auth/acs_app") {
+           let url = URL(string: "https://\(subdomain).inovautomacao.com.br/api/auth/acs") {
             
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
-            let authData = AuthRequestData(codigo: login, senha: password, perfil: PerfilData(lst_perm: [PermData(nome: "apps-financeiro")]))
+            let authData = AuthRequestData(Codigo: login, Senha: password, Perfil: PerfilData(Permissoes: [PermData(Nome: "apps-financeiro")]))
             
             do {
                 let encoder = JSONEncoder()
@@ -61,7 +61,7 @@ class LoginScreenViewModel {
             request.httpMethod = "POST"
             let currentDate = getCurrentDate()
             
-            let requestData = RequestData(data1: currentDate.data1, data2: currentDate.data2, tipo: .VendaDia, emp: EmpData(codigo: 1))
+            let requestData = RequestData(DataInicial: currentDate.data1, DataFinal: currentDate.data2, Tipo: .VendaDia, Empresa: 1)
             
             do {
                 let encoder = JSONEncoder()
@@ -88,7 +88,7 @@ class LoginScreenViewModel {
                                 let decodedResponse = try decoder.decode([ResponseData].self, from: responseData)
                                 self.delegate?.didReceiveResponseValues(decodedResponse)
                                 for data in decodedResponse {
-                                    print("Value: \(data.value), Label: \(data.label), nmro: \(data.nro_cliente)")
+                                    print("Value: \(data.Value), Label: \(data.Label), nmro: \(data.NumeroCliente)")
                                 }
                             } catch {
                                 print("Error decoding response data: \(error.localizedDescription)")
@@ -141,12 +141,12 @@ class LoginScreenViewModel {
                         if let profile = profileResponse.first {
                             ProfileData.shared.profiles = profileResponse
 
-                            UserDefaultsManager.shared.nome = profile.nome
-                            UserDefaultsManager.shared.cpfCnpj = profile.cpfcnpj
-                            UserDefaultsManager.shared.telefone = profile.endereco.tel2
-                            UserDefaultsManager.shared.enderecoRua = profile.endereco.logradouro
-                            UserDefaultsManager.shared.enderecoNumero = profile.endereco.nro
-                            UserDefaultsManager.shared.fantasia = profile.fantasia
+                            UserDefaultsManager.shared.nome = profile.Nome
+                            UserDefaultsManager.shared.cpfCnpj = profile.CpfCnpj
+                            UserDefaultsManager.shared.telefone = profile.Celular  
+                            UserDefaultsManager.shared.enderecoRua = profile.Endereco.Logradouro
+                            UserDefaultsManager.shared.enderecoNumero = profile.Endereco.Numero
+                            UserDefaultsManager.shared.fantasia = profile.Fantasia
 
                         }
                     } catch {
