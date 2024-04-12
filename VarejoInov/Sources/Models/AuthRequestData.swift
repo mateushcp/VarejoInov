@@ -8,69 +8,74 @@
 import Foundation
 
 struct AuthRequestData: Codable {
-    let codigo: Int
-    let senha: String
-    let perfil: PerfilData
+    let Codigo: Int
+    let Senha: String
+    let Perfil: PerfilData
 }
 
 struct PerfilData: Codable {
-    let lst_perm: [PermData]
+    let Permissoes: [PermData]
 }
 
 struct PermData: Codable {
-    let nome: String
+    let Nome: String
 }
 
 struct AuthResponse: Codable {
-    let codigo: Int
-    let nome: String
-    let barras: String?
-    let senha: String?
-    let endereco: String?
-    let bio: String?
-    let compl: String?
-    let perfil: String?
-    let hr_noturno: String?
-    let atend: Bool
-    let tbpr: String?
-    let ativo: Bool
-    let lst_emp: String?
-    let usr_alt: Int
+    let Codigo: Int
+    let Nome: String
+    let Barras: String?
+    let Endereco: String?
+    let Telefone: String?
+    let Celular : String?
+    let Senha: String?
+    let Biometria: String?
+    let Compl: String?
+    let HorarioNoturno: String?
+    let Atendente: Bool
+    let TabelaPreco: String?
+    let Perfil: String?
+    let Ativo: Bool
+    let Empresas: String?
+    let UsuarioAlteracao: Int
 }
 
 struct ProfileResponseModel: Codable {
     struct Endereco: Codable {
         struct Pais: Codable {
-            let codigo: String
-            let nome: String
+            let Codigo: String
+            let Nome: String
         }
         
-        let cep: String
-        let logradouro: String
-        let nro: String
-        let compl: String
-        let bairro: String
-        let municipio: String
-        let municipio_codigo: Int
-        let uf: String
-        let tel1: String
-        let tel2: String
-        let pais: Pais
+        let Cep: String
+        let Logradouro: String
+        let Numero: String
+        let Compl: String
+        let Bairro: String
+        let Municipio: String
+        let CodigoMunicipio: Int
+        let UF: String
+        let Pais: Pais
+        
     }
     
-    let codigo: Int
-    let nome: String
-    let fantasia: String
-    let cpfcnpj: String
-    let ie: String
-    let im: String
-    let site: String
-    let email: String
-    let contato: String
-    let crt: Int
-    let endereco: Endereco
-    let ativo: Bool
-    let codigo_matriz: Int
-    let codigo_estorno_credito: String
-    let codigo_credito_presumido: String
+    let Codigo: Int
+    let Nome: String
+    let Fantasia: String
+    let CpfCnpj: String
+    let IE: String
+    let IM: String
+    let Site: String
+    let Email: String
+    let Contato: String
+    let Crt: Int
+    let Endereco: Endereco
+    let Ativo: Bool
+    let CodigoMatriz: Int
+    let CodigoEstornoCredito: String
+    let CodigoCreditoPresumido: String
+    let RegimeFederal: Int
+    let Telefone: String
+    let Celular: String
+    
 }

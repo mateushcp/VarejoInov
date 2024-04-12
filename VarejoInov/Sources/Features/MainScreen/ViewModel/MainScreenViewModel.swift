@@ -21,10 +21,10 @@ class MainScreenViewModel {
             let calendar = Calendar.current
             let today = calendar.startOfDay(for: Date())
             
-            let requestData = RequestData(data1: startDate != nil ? dateFormatter.string(from: startDate!) : dateFormatter.string(from: today),
-                                          data2: endDate != nil ? dateFormatter.string(from: endDate!) : dateFormatter.string(from: today),
-                                          tipo: filter ?? .VendaDia,
-                                          emp: EmpData(codigo: code ?? 1))
+            let requestData = RequestData(DataInicial: startDate != nil ? dateFormatter.string(from: startDate!) : dateFormatter.string(from: today),
+                                          DataFinal: endDate != nil ? dateFormatter.string(from: endDate!) : dateFormatter.string(from: today),
+                                          Tipo: filter ?? .VendaDia,
+                                          Empresa: code ?? 1)
             
             do {
                 let encoder = JSONEncoder()
@@ -51,7 +51,7 @@ class MainScreenViewModel {
                                 let decodedResponse = try decoder.decode([ResponseData].self, from: responseData)
                                 DispatchQueue.main.async {
                                     for data in decodedResponse {
-                                        print("Value: \(data.value), Label: \(data.label)")
+                                        print("Value: \(data.Value), Label: \(data.Label)")
                                         self.delegate?.didReceiveResponseValues(decodedResponse)
                                     }
                                 }
@@ -80,7 +80,7 @@ class MainScreenViewModel {
             request.httpMethod = "POST"
             let currentDate = getCurrentDate()
             
-            let requestData = RequestData(data1: currentDate.data1, data2: currentDate.data2, tipo: .VendaDia, emp: EmpData(codigo: 1))
+            let requestData = RequestData(DataInicial: currentDate.data1, DataFinal: currentDate.data2, Tipo: .VendaDia, Empresa: 1)
             
             do {
                 let encoder = JSONEncoder()
@@ -107,7 +107,7 @@ class MainScreenViewModel {
                                 let decodedResponse = try decoder.decode([ResponseData].self, from: responseData)
                                 self.delegate?.didReceiveResponseValues(decodedResponse)
                                 for data in decodedResponse {
-                                    print("Value: \(data.value), Label: \(data.label)")
+                                    print("Value: \(data.Value), Label: \(data.Label)")
                                 }
                             } catch {
                                 print("Error decoding response data: \(error.localizedDescription)")

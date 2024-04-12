@@ -145,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				A9BEA0FC2A65E31900E06221 /* UserDefaults */,
-				A9EC6A822A5F09A100FB792C /* Components */,
 				A9EC6A812A5F099800FB792C /* Extensions */,
 				A9EC6A802A5F099200FB792C /* Models */,
 				A9EC6A7A2A5F083A00FB792C /* DependencyInjection */,
@@ -169,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				A955C05C2AB1E7A200663330 /* Shared */,
-				A9EC6A912A5F0CEE00FB792C /* SubDomainScreen */,
 				A9EC6A832A5F09D400FB792C /* LoginScreen */,
 				A9EC6A842A5F0A1300FB792C /* MainScreen */,
 			);
@@ -211,13 +209,6 @@
 				A94121772A83403300A635D5 /* Strings + Ext.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A9EC6A822A5F09A100FB792C /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		A9EC6A832A5F09D400FB792C /* LoginScreen */ = {
@@ -273,29 +264,6 @@
 			children = (
 				A9BEA0F62A61CBB900E06221 /* MainScreenViewModel.swift */,
 				A9BEA0F82A61E7D500E06221 /* MainScreenViewModelDelegate.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		A9EC6A912A5F0CEE00FB792C /* SubDomainScreen */ = {
-			isa = PBXGroup;
-			children = (
-				A9EC6A932A5F0CFA00FB792C /* ViewModel */,
-				A9EC6A922A5F0CF600FB792C /* View */,
-			);
-			path = SubDomainScreen;
-			sourceTree = "<group>";
-		};
-		A9EC6A922A5F0CF600FB792C /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A9EC6A932A5F0CFA00FB792C /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

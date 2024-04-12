@@ -185,7 +185,7 @@ class MainScreenView: UIView {
         calculateValue(data: data)
         self.selectedStartDate = getCurrentDate().data1
         self.selectedEndDate = getCurrentDate().data2
-        numberOfClients = data.compactMap { $0.nro_cliente }
+        numberOfClients = data.compactMap { $0.NumeroCliente }
         let totalClientsInPeriod = numberOfClients?.reduce(0, +) ?? 0
         if totalClientsInPeriod > 0 {
             let ticketValue = totalValue! / Double(totalClientsInPeriod)
@@ -217,7 +217,7 @@ class MainScreenView: UIView {
         var totalValue: Double = 0
         
         for entry in data {
-            totalValue += entry.value
+            totalValue += entry.Value
         }
         
         self.totalValue = totalValue
@@ -237,7 +237,7 @@ class MainScreenView: UIView {
         var sales: [Double] = []
         
         for data in data {
-            var dayLabel = data.label
+            var dayLabel = data.Label
             
             if dayLabel == "Cartão Crédito" {
                 dayLabel = "Credito"
@@ -253,7 +253,7 @@ class MainScreenView: UIView {
             } else {
                 days.append(dayLabel)
             }
-            sales.append(data.value)
+            sales.append(data.Value)
         }
         
         var dataEntries: [BarChartDataEntry] = []
@@ -413,14 +413,14 @@ class MainScreenView: UIView {
         responseValues = data
         calculateValue(data: data)
         setupBarChartData(data: data)
-        self.numberOfClients = data.compactMap { $0.nro_cliente }
+        self.numberOfClients = data.compactMap { $0.NumeroCliente }
         updateTotalAndTicketValue(data: data)
     }
     
     private func updateTotalAndTicketValue(data: [ResponseData]) {
-        let totalClientsInPeriod = data.compactMap { $0.nro_cliente }.reduce(0, +)
+        let totalClientsInPeriod = data.compactMap { $0.NumeroCliente }.reduce(0, +)
         if totalClientsInPeriod > 0 {
-            let totalValue = data.reduce(0) { $0 + $1.value }
+            let totalValue = data.reduce(0) { $0 + $1.Value }
             let ticketValue = totalValue / Double(totalClientsInPeriod)
             let formattedTicketValue = String(format: "%.2f", ticketValue)
             numberOfAndTicketValue.text = "\(totalClientsInPeriod) / \(formattedTicketValue)"
@@ -437,9 +437,9 @@ class MainScreenView: UIView {
         let alertController = UIAlertController(title: "Selecionar Empresa", message: "Escolha uma empresa:", preferredStyle: .actionSheet)
         
         for profile in ProfileData.shared.profiles {
-            let action = UIAlertAction(title: profile.fantasia, style: .default) { [weak self] _ in
+            let action = UIAlertAction(title: profile.Fantasia, style: .default) { [weak self] _ in
                 self?.updateCompanyInfo(with: profile)
-                self?.delegate?.getNewChart(startDate: self?.selectedStartDate, endDate: self?.selectedEndDate, code: profile.codigo)
+                self?.delegate?.getNewChart(startDate: self?.selectedStartDate, endDate: self?.selectedEndDate, code: profile.Codigo)
             }
             alertController.addAction(action)
         }
@@ -453,9 +453,9 @@ class MainScreenView: UIView {
     }
 
     private func updateCompanyInfo(with profile: ProfileResponseModel) {
-        nameText.text = "\(profile.fantasia) ▼ "
-        self.code = profile.codigo
-        let cnpj = profile.cpfcnpj ?? "CPF/CNPJ não disponível"
+        nameText.text = "\(profile.Fantasia) ▼ "
+        self.code = profile.Codigo
+        let cnpj = profile.CpfCnpj ?? "CPF/CNPJ não disponível"
         companyNameLabelValue.text = cnpj.formatCPFCNPJ(cnpj)
         delegate?.getNewChart(startDate: self.selectedStartDate, endDate: self.selectedEndDate, code: self.code)
     }
