@@ -9,4 +9,5 @@ import Foundation
 
 protocol MainScreenViewModelDelegate: AnyObject {
     func didReceiveResponseValues(_ responseValues: [ResponseData])
+    func sessionExpired()
 }

@@ -195,19 +195,23 @@ extension LoginScreenViewController: LoginScreenViewDelegate {
 }
 
 extension LoginScreenViewController: LoginScreenViewModelDelegate {
-    
+
     func loginResul(result: LoginResult) {
         handleLoginResult(result: result)
     }
-    
+
     func didReceiveResponseValues(_ responseValues: [ResponseData]) {
         self.responseValues = responseValues
     }
-    
+
     func didSetDomain() {
         viewModel.sendRequest()
         viewModel.getProfileData()
     }
-    
+
+    func sessionExpired() {
+        
+    }
+
 }
  

@@ -19,7 +19,8 @@ class UserDefaultsManager {
     private let enderecoRuaKey = "enderecoRua"
     private let enderecoNumeroKey = "enderecoNumero"
     private let fantasiaKey = "fantasia"
-    
+    private let authTokenKey = "authToken"
+
     private init() {}
     
     var subdomain: String? {
@@ -84,7 +85,20 @@ class UserDefaultsManager {
             UserDefaults.standard.set(newValue, forKey: fantasiaKey)
         }
     }
-    
+
+    var authToken: String? {
+        get {
+            return UserDefaults.standard.string(forKey: authTokenKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: authTokenKey)
+        }
+    }
+
+    func clearAuthToken() {
+        UserDefaults.standard.removeObject(forKey: authTokenKey)
+    }
+
     func savedDomains() -> [String] {
            if let domains = UserDefaults.standard.array(forKey: "savedDomains") as? [String] {
                return domains

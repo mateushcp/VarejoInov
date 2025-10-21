@@ -25,25 +25,39 @@ class MainScreenViewModel {
                                           DataFinal: endDate != nil ? dateFormatter.string(from: endDate!) : dateFormatter.string(from: today),
                                           Tipo: filter ?? .VendaDia,
                                           Empresa: code ?? 1)
-            
+
             do {
                 let encoder = JSONEncoder()
                 let jsonData = try encoder.encode(requestData)
                 request.httpBody = jsonData
-                
+
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                
+
+                // Adiciona o token de autenticação se existir
+                if let token = UserDefaultsManager.shared.authToken {
+                    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                }
+
                 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let error = error {
                         print("Error: \(error.localizedDescription)")
                         return
                     }
-                    
+
                     guard let httpResponse = response as? HTTPURLResponse else {
                         print("Invalid response")
                         return
                     }
-                    
+
+                    if httpResponse.statusCode == 401 {
+                        // Token expirado ou inválido
+//                        UserDefaultsManager.shared.clearAuthToken()
+                        DispatchQueue.main.async {
+                            self.delegate?.sessionExpired()
+                        }
+                        return
+                    }
+
                     if httpResponse.statusCode == 200 {
                         if let responseData = data {
                             do {
@@ -81,25 +95,39 @@ class MainScreenViewModel {
             let currentDate = getCurrentDate()
             
             let requestData = RequestData(DataInicial: currentDate.data1, DataFinal: currentDate.data2, Tipo: .VendaDia, Empresa: 1)
-            
+
             do {
                 let encoder = JSONEncoder()
                 let jsonData = try encoder.encode(requestData)
                 request.httpBody = jsonData
-                
+
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                
+
+                // Adiciona o token de autenticação se existir
+                if let token = UserDefaultsManager.shared.authToken {
+                    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                }
+
                 let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                     if let error = error {
                         print("Error: \(error.localizedDescription)")
                         return
                     }
-                    
+
                     guard let httpResponse = response as? HTTPURLResponse else {
                         print("Invalid response")
                         return
                     }
-                    
+
+                    if httpResponse.statusCode == 401 {
+                        // Token expirado ou inválido
+//                        UserDefaultsManager.shared.clearAuthToken()
+                        DispatchQueue.main.async {
+                            self.delegate?.sessionExpired()
+                        }
+                        return
+                    }
+
                     if httpResponse.statusCode == 200 {
                         if let responseData = data {
                             do {

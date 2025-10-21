@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E56047D2EA703400035570C /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E56047C2EA7033A0035570C /* KeychainManager.swift */; };
+		1E56047F2EA703FE0035570C /* BiometricAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E56047E2EA703FB0035570C /* BiometricAuthManager.swift */; };
+		1E8F6ADD2EA7BFD300C99292 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6ADB2EA7BFD300C99292 /* AuthAPI.swift */; };
+		1E8F6ADF2EA7BFF000C99292 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6ADE2EA7BFF000C99292 /* UIViewController+Ext.swift */; };
 		A94121732A82D9F300A635D5 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94121722A82D9F300A635D5 /* UIImage + Ext.swift */; };
 		A94121782A83403300A635D5 /* Strings + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94121772A83403300A635D5 /* Strings + Ext.swift */; };
 		A955C05E2AB1E7AE00663330 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955C05D2AB1E7AE00663330 /* ProfileData.swift */; };
@@ -37,6 +41,10 @@
 
 /* Begin PBXFileReference section */
 		04CB4E4DC9E4E3EAE219CEB1 /* Pods_VarejoInov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VarejoInov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E56047C2EA7033A0035570C /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		1E56047E2EA703FB0035570C /* BiometricAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthManager.swift; sourceTree = "<group>"; };
+		1E8F6ADB2EA7BFD300C99292 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		1E8F6ADE2EA7BFF000C99292 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		2134C3B9F073FAC2D75EDEB5 /* Pods-VarejoInov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.debug.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.debug.xcconfig"; sourceTree = "<group>"; };
 		597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.release.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.release.xcconfig"; sourceTree = "<group>"; };
 		A94121722A82D9F300A635D5 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
@@ -80,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E8F6ADC2EA7BFD300C99292 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1E8F6ADB2EA7BFD300C99292 /* AuthAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		580FDAA634709D5F1339B318 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +116,8 @@
 		A955C05C2AB1E7A200663330 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1E56047E2EA703FB0035570C /* BiometricAuthManager.swift */,
+				1E56047C2EA7033A0035570C /* KeychainManager.swift */,
 				A955C05D2AB1E7AE00663330 /* ProfileData.swift */,
 			);
 			path = Shared;
@@ -144,6 +162,7 @@
 		A9EC6A752A5EF49C00FB792C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1E8F6ADC2EA7BFD300C99292 /* API */,
 				A9BEA0FC2A65E31900E06221 /* UserDefaults */,
 				A9EC6A812A5F099800FB792C /* Extensions */,
 				A9EC6A802A5F099200FB792C /* Models */,
@@ -204,6 +223,7 @@
 		A9EC6A812A5F099800FB792C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1E8F6ADE2EA7BFF000C99292 /* UIViewController+Ext.swift */,
 				A9EC6A942A5F203500FB792C /* UITextField+ Ext.swift */,
 				A94121722A82D9F300A635D5 /* UIImage + Ext.swift */,
 				A94121772A83403300A635D5 /* Strings + Ext.swift */,
@@ -389,6 +409,7 @@
 				A9EC6A8E2A5F0CC500FB792C /* LoginScreenViewController.swift in Sources */,
 				A9BEA0F72A61CBB900E06221 /* MainScreenViewModel.swift in Sources */,
 				A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */,
+				1E56047F2EA703FE0035570C /* BiometricAuthManager.swift in Sources */,
 				A9BEA0F92A61E7D500E06221 /* MainScreenViewModelDelegate.swift in Sources */,
 				A9BEA1002A65E7DC00E06221 /* AuthRequestData.swift in Sources */,
 				A9EC6A7D2A5F086100FB792C /* ViewControllerFactory.swift in Sources */,
@@ -398,12 +419,15 @@
 				A955C05E2AB1E7AE00663330 /* ProfileData.swift in Sources */,
 				A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */,
 				A9EC6A972A5F3D2200FB792C /* MainScreenViewController.swift in Sources */,
+				1E56047D2EA703400035570C /* KeychainManager.swift in Sources */,
 				A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */,
+				1E8F6ADD2EA7BFD300C99292 /* AuthAPI.swift in Sources */,
 				A9EC6A9B2A5F3D3200FB792C /* MainScreenView.swift in Sources */,
 				A9BEA0FE2A65E32800E06221 /* UserDefaults.swift in Sources */,
 				A9EC6A902A5F0CD400FB792C /* LoginScreenFlowDelegate.swift in Sources */,
 				A94121782A83403300A635D5 /* Strings + Ext.swift in Sources */,
 				A9EC6A952A5F203500FB792C /* UITextField+ Ext.swift in Sources */,
+				1E8F6ADF2EA7BFF000C99292 /* UIViewController+Ext.swift in Sources */,
 				A9BEA0F32A61C4E300E06221 /* RequestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,7 +557,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WNNJ4KX4AX;
+				DEVELOPMENT_TEAM = Y67P2B64A8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VarejoInov/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -546,7 +570,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = Abidu.VarejoInov;
+				PRODUCT_BUNDLE_IDENTIFIER = samuelfranca.VarejoInov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -562,7 +586,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = WNNJ4KX4AX;
+				DEVELOPMENT_TEAM = Y67P2B64A8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VarejoInov/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -575,7 +599,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = Abidu.VarejoInov;
+				PRODUCT_BUNDLE_IDENTIFIER = samuelfranca.VarejoInov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

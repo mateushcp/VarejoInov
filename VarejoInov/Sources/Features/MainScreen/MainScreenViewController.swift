@@ -36,7 +36,7 @@ class MainScreenViewController: UIViewController {
         view.backgroundColor = UIColor(red: 230/255, green: 227/255, blue: 227/255, alpha: 1.0)
         navigationController?.navigationBar.isHidden = true
         setupContentView()
-        
+        viewModel.sendDefaultSalesRequest()
     }
     
     private func setupContentView() {
@@ -93,7 +93,18 @@ extension MainScreenViewController: MainScreenViewModelDelegate {
             self.contentView.updateChart(data: responseValues)
         }
     }
-    
+
+    func sessionExpired() {
+        handleSessionExpired(
+            onRetry: {
+                self.viewDidLoad()
+            },
+            onLogout: {
+                self.delegate?.userLoggedOut()
+            }
+        )
+    }
+
 }
 
 extension MainScreenViewController: UITabBarDelegate {
