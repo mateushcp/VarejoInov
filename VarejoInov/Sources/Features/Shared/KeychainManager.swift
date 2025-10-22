@@ -15,39 +15,35 @@ class KeychainManager {
     private let service = "com.varejoinov.app"
     private let userLoginKey = "userLogin"
     private let userPasswordKey = "userPassword"
-    private let userTempTokenKey = "userTempToken"
+    private let userToken = "userToken"
 
-    func saveTempToken(_ token: String) {
-        saveToKeychain(key: userTempTokenKey, value: token)
-    }
     
-    func getTempToken() -> String? {
-        guard let tempToken = getFromKeychain(key: userTempTokenKey) else {
-            return nil
+    func saveCredentials(login: Int? = nil, password: String? = nil, token: String? = nil) {
+        if let login {
+            saveToKeychain(key: userLoginKey, value: String(login))
         }
-        return tempToken
-    }
-    
-    // Salvar credenciais
-    func saveCredentials(login: Int, password: String) {
-        saveToKeychain(key: userLoginKey, value: String(login))
-        saveToKeychain(key: userPasswordKey, value: password)
+        if let password {
+            saveToKeychain(key: userPasswordKey, value: password)
+        }
+        if let token {
+            saveToKeychain(key: userToken, value: token)
+        }
     }
 
-    // Recuperar credenciais
-    func getCredentials() -> (login: Int, password: String)? {
+    func getCredentials() -> (login: Int, password: String, token: String)? {
         guard let loginString = getFromKeychain(key: userLoginKey),
               let login = Int(loginString),
-              let password = getFromKeychain(key: userPasswordKey) else {
+              let password = getFromKeychain(key: userPasswordKey),
+              let token = getFromKeychain(key: userToken) else {
             return nil
         }
-        return (login, password)
+        return (login, password, token)
     }
 
-    // Limpar credenciais
     func clearCredentials() {
         deleteFromKeychain(key: userLoginKey)
         deleteFromKeychain(key: userPasswordKey)
+        deleteFromKeychain(key: userToken)
     }
 
     // MARK: - Keychain Operations
@@ -62,10 +58,8 @@ class KeychainManager {
             kSecValueData as String: data
         ]
 
-        // Delete existing item
         SecItemDelete(query as CFDictionary)
 
-        // Add new item
         SecItemAdd(query as CFDictionary, nil)
     }
 

@@ -37,6 +37,7 @@ class MainScreenViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         setupContentView()
         viewModel.sendDefaultSalesRequest()
+        viewModel.getProfileData()
     }
     
     private func setupContentView() {
@@ -124,7 +125,7 @@ extension MainScreenViewController: UITabBarDelegate {
     }
     
     func handleLogout() {
-        UserDefaultsManager.shared.subdomain = nil
+        UserDefaultsManager.shared.clearUserDefaultsProfile()
         delegate?.userLoggedOut()
     }
     

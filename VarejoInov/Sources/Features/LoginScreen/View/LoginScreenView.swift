@@ -184,7 +184,6 @@ class LoginScreenView: UIView {
         let confirmAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
             guard let domain = alertController.textFields?.first?.text else { return }
             UserDefaultsManager.shared.subdomain = domain
-            self?.delegate?.didSetDomain()
         }
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alertController.addAction(confirmAction)

@@ -24,8 +24,10 @@ class VarejoInovFlowController {
     
     // MARK: - Start Flow
     func start() -> UINavigationController? {
+        let credentials = KeychainManager.shared.getCredentials()
+
         // Verifica se existe token salvo
-        if let token = UserDefaultsManager.shared.authToken, !token.isEmpty {
+        if let token = credentials?.token, !token.isEmpty {
             // Token existe - vai direto para MainScreen
             // Se o token estiver expirado, a primeira requisição vai falhar com 401
             // e o handleSessionExpired() vai cuidar da reautenticação via biometria

@@ -139,7 +139,7 @@ class MainScreenView: UIView {
     private let picker1: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
-        datePicker.date = Calendar.current.date(byAdding: .day, value: -3, to: Date()) ?? Date()
+        datePicker.date = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
         datePicker.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
         datePicker.layer.cornerRadius = 8
         datePicker.clipsToBounds = true
@@ -206,7 +206,7 @@ class MainScreenView: UIView {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let data2 = currentDate
-        let data1 = Calendar.current.date(byAdding: .day, value: -3, to: currentDate)!
+        let data1 = Calendar.current.date(byAdding: .day, value: -7, to: currentDate)!
         
         return (data1, data2)
     }

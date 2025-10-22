@@ -10,9 +10,77 @@ import Foundation
 class MainScreenViewModel {
     weak public var delegate: MainScreenViewModelDelegate?
     
+    func getProfileData() {
+        let credentials = KeychainManager.shared.getCredentials()
+
+        if let baseURL = AuthAPI.baseURL,
+            let url = URL(string: "\(baseURL)/api/empresa/lst") {
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let emptyBody = EmptyRequestBody()
+
+            do {
+                let encoder = JSONEncoder()
+                let jsonData = try encoder.encode(emptyBody)
+                request.httpBody = jsonData
+
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+                if let token = credentials?.token {
+                    request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+                }
+                
+                let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+                    if let error = error {
+                        print("Error: \(error.localizedDescription)")
+                        return
+                    }
+
+                    guard let httpResponse = response as? HTTPURLResponse else {
+                        print("Invalid response")
+                        return
+                    }
+
+                    guard let responseData = data else {
+                        print("No response data")
+                        return
+                    }
+
+                    do {
+                        let decoder = JSONDecoder()
+                        let profileResponse = try decoder.decode([ProfileResponseModel].self, from: responseData)
+                        
+                        if let profile = profileResponse.first {
+                            ProfileData.shared.profiles = profileResponse
+
+                            UserDefaultsManager.shared.nome = profile.Nome
+                            UserDefaultsManager.shared.cpfCnpj = profile.CpfCnpj
+                            UserDefaultsManager.shared.telefone = profile.Celular
+                            UserDefaultsManager.shared.enderecoRua = profile.Endereco.Logradouro
+                            UserDefaultsManager.shared.enderecoNumero = profile.Endereco.Numero
+                            UserDefaultsManager.shared.fantasia = profile.Fantasia
+
+                        }
+                    } catch {
+                        print("Error decoding response data: \(error.localizedDescription)")
+                    }
+                }
+                
+                task.resume()
+            } catch {
+                print("Error encoding request data: \(error.localizedDescription)")
+            }
+        } else {
+            print("Subdomain not found in UserDefaults.")
+        }
+    }
+    
     func sendRequest(startDate: Date?, endDate: Date?, filter: TipoRelatorioAppFinanceiro?, code: Int?) {
-        if let subdomain = UserDefaultsManager.shared.subdomain,
-           let url = URL(string: "https://\(subdomain).inovautomacao.com.br/api/relatorioappfinanceiro") {
+        let credentials = KeychainManager.shared.getCredentials()
+
+        if let baseURL = AuthAPI.baseURL,
+            let url = URL(string: "\(baseURL)/api/relatorioappfinanceiro") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
@@ -33,8 +101,7 @@ class MainScreenViewModel {
 
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-                // Adiciona o token de autenticação se existir
-                if let token = UserDefaultsManager.shared.authToken {
+                if let token = credentials?.token {
                     request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                 }
 
@@ -50,8 +117,6 @@ class MainScreenViewModel {
                     }
 
                     if httpResponse.statusCode == 401 {
-                        // Token expirado ou inválido
-//                        UserDefaultsManager.shared.clearAuthToken()
                         DispatchQueue.main.async {
                             self.delegate?.sessionExpired()
                         }
@@ -65,7 +130,7 @@ class MainScreenViewModel {
                                 let decodedResponse = try decoder.decode([ResponseData].self, from: responseData)
                                 DispatchQueue.main.async {
                                     for data in decodedResponse {
-                                        print("Value: \(data.Value), Label: \(data.Label)")
+                                        print("Value: \(data.Value), Label: \(data.Label), Clientes: \(data.NumeroCliente)")
                                         self.delegate?.didReceiveResponseValues(decodedResponse)
                                     }
                                 }
@@ -87,8 +152,10 @@ class MainScreenViewModel {
     }
     
     func sendDefaultSalesRequest() {
-        if let subdomain = UserDefaultsManager.shared.subdomain,
-           let url = URL(string: "https://\(subdomain).inovautomacao.com.br/api/relatorioappfinanceiro") {
+        let credentials = KeychainManager.shared.getCredentials()
+
+        if let baseURL = AuthAPI.baseURL,
+           let url = URL(string: "\(baseURL)/api/relatorioappfinanceiro") {
             
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -103,8 +170,7 @@ class MainScreenViewModel {
 
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-                // Adiciona o token de autenticação se existir
-                if let token = UserDefaultsManager.shared.authToken {
+                if let token = credentials?.token {
                     request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
                 }
 
@@ -120,8 +186,6 @@ class MainScreenViewModel {
                     }
 
                     if httpResponse.statusCode == 401 {
-                        // Token expirado ou inválido
-//                        UserDefaultsManager.shared.clearAuthToken()
                         DispatchQueue.main.async {
                             self.delegate?.sessionExpired()
                         }
@@ -162,7 +226,7 @@ class MainScreenViewModel {
         
         let data2 = dateFormatter.string(from: currentDate)
         
-        let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: currentDate)!
+        let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: currentDate)!
         let data1 = dateFormatter.string(from: threeDaysAgo)
         
         return (data1, data2)

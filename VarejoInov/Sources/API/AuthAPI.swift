@@ -9,12 +9,16 @@ import Foundation
 
 class AuthAPI {
     static let shared = AuthAPI()
+    static var baseURL: String? {
+          guard let subdomain = UserDefaultsManager.shared.subdomain else { return nil }
+          return "https://\(subdomain).inovautomacao.com.br"
+      }
+
     private init() {}
 
-    // Fazer login e retornar token
-    func login(codigo: Int, senha: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard let subdomain = UserDefaultsManager.shared.subdomain,
-              let url = URL(string: "https://\(subdomain).inovautomacao.com.br/api/auth/Login") else {
+    func login(loginCode: Int, password: String, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let baseURL = AuthAPI.baseURL,
+              let url = URL(string: "\(baseURL)/api/auth/Login") else {
             completion(.failure(NSError(domain: "AuthAPI", code: -1, userInfo: [NSLocalizedDescriptionKey: "Subdomain inválido"])))
             return
         }
@@ -23,8 +27,8 @@ class AuthAPI {
         request.httpMethod = "POST"
 
         let authData = AuthRequestData(
-            Codigo: codigo,
-            Senha: senha,
+            Codigo: loginCode,
+            Senha: password,
             Perfil: PerfilData(Permissoes: [PermData(Nome: "apps-financeiro")])
         )
 
@@ -47,7 +51,6 @@ class AuthAPI {
 
                 if (200..<300).contains(httpResponse.statusCode) {
                     if let data = data, let token = String(data: data, encoding: .utf8) {
-                        // Remove espaços, quebras de linha e aspas
                         let cleanToken = token.trimmingCharacters(in: .whitespacesAndNewlines)
                             .trimmingCharacters(in: CharacterSet(charactersIn: "\""))
                         completion(.success(cleanToken))
@@ -65,13 +68,12 @@ class AuthAPI {
         }
     }
 
-    // Re-autenticar com credenciais do Keychain
     func reauthenticateWithStoredCredentials(completion: @escaping (Result<String, Error>) -> Void) {
         guard let credentials = KeychainManager.shared.getCredentials() else {
             completion(.failure(NSError(domain: "AuthAPI", code: -1, userInfo: [NSLocalizedDescriptionKey: "Credenciais não encontradas"])))
             return
         }
 
-        login(codigo: credentials.login, senha: credentials.password, completion: completion)
+        login(loginCode: credentials.login, password: credentials.password, completion: completion)
     }
 }

@@ -21,7 +21,7 @@ extension UIViewController {
             })
 
             alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { _ in
-                UserDefaultsManager.shared.clearAuthToken()
+                KeychainManager.shared.clearCredentials()
                 onLogout()
             })
 
@@ -30,23 +30,20 @@ extension UIViewController {
     }
 
     private func reauthenticateWithBiometrics(onSuccess: @escaping () -> Void, onFailure: @escaping () -> Void) {
-        // Verifica se biometria está disponível
         guard BiometricAuthManager.shared.isBiometricAvailable() else {
             showAlert(title: "Biometria Indisponível", message: "Face ID/Touch ID não está disponível. Faça login novamente.") {
-                UserDefaultsManager.shared.clearAuthToken()
+                KeychainManager.shared.clearCredentials()
                 onFailure()
             }
             return
         }
 
-        // Solicita autenticação biométrica
         BiometricAuthManager.shared.authenticateWithBiometrics { success, error in
             if success {
-                // Biometria aprovada - re-autenticar via API
                 self.reauthenticateUser(onSuccess: onSuccess, onFailure: onFailure)
             } else {
                 self.showAlert(title: "Autenticação Falhou", message: "Não foi possível autenticar. Faça login novamente.") {
-                    UserDefaultsManager.shared.clearAuthToken()
+                    KeychainManager.shared.clearCredentials()
                     onFailure()
                 }
             }
@@ -58,14 +55,12 @@ extension UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let token):
-                    UserDefaultsManager.shared.authToken = token
-                    print("✅ Token renovado com sucesso via biometria")
+                    KeychainManager.shared.saveCredentials(token: token)
                     onSuccess()
 
                 case .failure(let error):
-                    print("❌ Erro ao renovar token: \(error.localizedDescription)")
                     self.showAlert(title: "Erro", message: "Não foi possível renovar a sessão. Faça login novamente.") {
-                        UserDefaultsManager.shared.clearAuthToken()
+                        KeychainManager.shared.clearCredentials()
                         onFailure()
                     }
                 }
