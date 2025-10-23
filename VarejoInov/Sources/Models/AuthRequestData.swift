@@ -72,10 +72,14 @@ struct ProfileResponseModel: Codable {
     let Endereco: Endereco
     let Ativo: Bool
     let CodigoMatriz: Int
-    let CodigoEstornoCredito: String
-    let CodigoCreditoPresumido: String
+    let CodigoEstornoCredito: String?
+    let CodigoCreditoPresumido: String?
+    let CodigoEstornoDebitoRegimeEspecial: String?
+    let CodigoCreditoRegimeEspecial: String?
+    let LimiteDiasRelatorio: Int?
     let RegimeFederal: Int
     let Telefone: String
     let Celular: String
-    
+    let UsuarioAlteracao: Int
+
 }

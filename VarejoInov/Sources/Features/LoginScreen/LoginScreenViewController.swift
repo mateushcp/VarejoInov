@@ -57,7 +57,7 @@ class LoginScreenViewController: UIViewController {
         view.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        if let currentDomain = UserDefaultsManager.shared.savedDomains().first {
+        if let currentDomain = UserDefaultsManager.shared.subdomain {
                contentView.domainButton.setTitle(currentDomain, for: .normal)
            }
         contentView.domainButton.addTarget(self, action: #selector(presentDomainOptions), for: .touchUpInside)

@@ -422,8 +422,8 @@ class MainScreenView: UIView {
         if totalClientsInPeriod > 0 {
             let totalValue = data.reduce(0) { $0 + $1.Value }
             let ticketValue = totalValue / Double(totalClientsInPeriod)
-            let formattedTicketValue = String(format: "%.2f", ticketValue)
-            numberOfAndTicketValue.text = "\(totalClientsInPeriod) / \(formattedTicketValue)"
+            let formattedTicketValue = String(format: "%.2f", ticketValue).replacingOccurrences(of: ".", with: ",")
+            numberOfAndTicketValue.text = "\(totalClientsInPeriod) / $\(formattedTicketValue)"
         } else {
             numberOfAndTicketValue.text = "N/A"
         }
