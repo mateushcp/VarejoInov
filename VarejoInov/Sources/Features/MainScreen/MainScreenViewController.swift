@@ -36,7 +36,6 @@ class MainScreenViewController: UIViewController {
         view.backgroundColor = UIColor(red: 230/255, green: 227/255, blue: 227/255, alpha: 1.0)
         navigationController?.navigationBar.isHidden = true
         setupContentView()
-        viewModel.sendDefaultSalesRequest()
         viewModel.getProfileData()
     }
     
@@ -89,6 +88,10 @@ extension MainScreenViewController: MainScreenViewDelegate {
 }
 
 extension MainScreenViewController: MainScreenViewModelDelegate {
+    func didReceiveProfileData(_ profileData: ProfileResponseModel) {
+        self.contentView.updateCompanyInfo(with: profileData)
+    }
+    
     func didReceiveResponseValues(_ responseValues: [ResponseData]) {
         DispatchQueue.main.async {
             self.contentView.updateChart(data: responseValues)
@@ -111,8 +114,10 @@ extension MainScreenViewController: MainScreenViewModelDelegate {
 extension MainScreenViewController: UITabBarDelegate {
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if item.tag == 0 {
-            viewModel.sendDefaultSalesRequest()
-            self.currentFilter = .VendaDia
+            let startDate = self.contentView.selectedStartDate
+            let endDate = self.contentView.selectedEndDate
+            let code = self.contentView.code
+            viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: currentFilter, code: code)
         } else if item.tag == 1 {
             presentProfileModal()
         } else if item.tag == 2 {
@@ -126,8 +131,11 @@ extension MainScreenViewController: UITabBarDelegate {
     
     func handleLogout() {
         UserDefaultsManager.shared.clearUserDefaultsProfile()
+        KeychainManager.shared.clearCredentials()
         delegate?.userLoggedOut()
     }
+    
+    
     
     func presentProfileModal() {
         let name = UserDefaultsManager.shared.nome ?? "Nome não disponível"
@@ -150,27 +158,37 @@ extension MainScreenViewController: UITabBarDelegate {
         
         let salesByDayAction = UIAlertAction(title: "Vendas por Dia", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Vendas por Dia")
-            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            let startDate = self.contentView.selectedStartDate
+            let endDate = self.contentView.selectedEndDate
+            let code = self.contentView.code
+            self.viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: self.currentFilter, code: code)
             self.contentView.shouldShowAxisInVertical = false
         }
-        
+
         let salesByHourAction = UIAlertAction(title: "Vendas por Hora", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Vendas por Hora")
-            let calendar = Calendar.current
-            let today = calendar.startOfDay(for: Date())
-            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            let startDate = self.contentView.selectedStartDate
+            let endDate = self.contentView.selectedEndDate
+            let code = self.contentView.code
+            self.viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: self.currentFilter, code: code)
             self.contentView.shouldShowAxisInVertical = false
         }
-        
+
         let paymentMethodsAction = UIAlertAction(title: "Formas de Pagamento", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Formas de Pagamento")
-            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            let startDate = self.contentView.selectedStartDate
+            let endDate = self.contentView.selectedEndDate
+            let code = self.contentView.code
+            self.viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: self.currentFilter, code: code)
             self.contentView.shouldShowAxisInVertical = true
         }
-        
+
         let paymentMethodsNFAction = UIAlertAction(title: "Formas de Pagamento: NF Admin", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Formas de Pagamento NF Admin")
-            self.viewModel.sendRequest(startDate: self.startDate, endDate: self.endDate, filter: self.currentFilter, code: self.code)
+            let startDate = self.contentView.selectedStartDate
+            let endDate = self.contentView.selectedEndDate
+            let code = self.contentView.code
+            self.viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: self.currentFilter, code: code)
             self.contentView.shouldShowAxisInVertical = true
         }
         

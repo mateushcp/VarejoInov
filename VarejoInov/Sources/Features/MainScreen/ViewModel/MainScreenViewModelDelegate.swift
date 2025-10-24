@@ -10,4 +10,5 @@ import Foundation
 protocol MainScreenViewModelDelegate: AnyObject {
     func didReceiveResponseValues(_ responseValues: [ResponseData])
     func sessionExpired()
+    func didReceiveProfileData(_ profileData: ProfileResponseModel)
 }

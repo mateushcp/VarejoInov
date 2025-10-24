@@ -50,7 +50,7 @@ class MainScreenViewModel {
                     do {
                         let decoder = JSONDecoder()
                         let profileResponse = try decoder.decode([ProfileResponseModel].self, from: responseData)
-                        
+
                         if let profile = profileResponse.first {
                             ProfileData.shared.profiles = profileResponse
 
@@ -60,7 +60,10 @@ class MainScreenViewModel {
                             UserDefaultsManager.shared.enderecoRua = profile.Endereco.Logradouro
                             UserDefaultsManager.shared.enderecoNumero = profile.Endereco.Numero
                             UserDefaultsManager.shared.fantasia = profile.Fantasia
-
+                            
+                            DispatchQueue.main.async {
+                                self?.delegate?.didReceiveProfileData(profile)
+                            }
                         }
                     } catch {
                         print("Error decoding response data: \(error.localizedDescription)")
