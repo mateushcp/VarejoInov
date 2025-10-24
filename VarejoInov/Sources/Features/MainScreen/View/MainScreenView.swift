@@ -27,7 +27,7 @@ class MainScreenView: UIView {
     
     private let circleView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 253/255, green: 253/255, blue: 253/255, alpha: 1.0)
+        view.backgroundColor = AppColors.cardBackground
         view.layer.cornerRadius = 16
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -45,118 +45,100 @@ class MainScreenView: UIView {
     private let welcomeText: UILabel = {
         let label = UILabel()
         label.text = "Bem-vindo!"
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = AppColors.primary
         label.font = UIFont.systemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let nameText: UILabel = {
         let label = UILabel()
         let fantasyName = UserDefaultsManager.shared.fantasia ?? ""
         label.text = "\(fantasyName) ▼ "
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = AppColors.primary
         label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let billingText: UILabel = {
         let label = UILabel()
         label.text = "Faturamento"
-        label.textColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
+        label.textColor = AppColors.primary
         label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let companyNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Empresa: "
-        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.textColor = AppColors.primaryLight
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let periodLabel: UILabel = {
         let label = UILabel()
         label.text = "Periodo: "
-        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.textColor = AppColors.primaryLight
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let totalGeneralLabel: UILabel = {
         let label = UILabel()
         label.text = "Total Geral: "
-        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.textColor = AppColors.primaryLight
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let numberOfClientsLabel: UILabel = {
         let label = UILabel()
         label.text = "Nº.Clientes/Ticket Médio: "
-        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.textColor = AppColors.primaryLight
         label.font = UIFont.systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let numberOfAndTicketValue: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.textColor = AppColors.primaryLight
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let companyNameLabelValue: UILabel = {
         let label = UILabel()
         let cnpj = UserDefaultsManager.shared.cpfCnpj ?? "CPF/CNPJ não disponível"
         label.text = cnpj.formatCPFCNPJ(cnpj)
-        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.textColor = AppColors.primaryLight
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let totalGeneralLabelValue: UILabel = {
         let label = UILabel()
         label.text = ""
-        label.textColor = UIColor(red: 108/255, green: 88/255, blue: 186/255, alpha: 1.0)
+        label.textColor = AppColors.primaryLight
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private let picker1: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.date = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
-        datePicker.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        datePicker.layer.cornerRadius = 8
-        datePicker.clipsToBounds = true
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        return datePicker
-    }()
-    
-    private let picker2: UIDatePicker = {
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.date = Date()
-        datePicker.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        datePicker.layer.cornerRadius = 8
-        datePicker.clipsToBounds = true
-        datePicker.translatesAutoresizingMaskIntoConstraints = false
-        return datePicker
-    }()
+    let picker1 = StyledDatePicker(date: Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date())
+
+    let picker2 = StyledDatePicker(date: Date())
     
     private let barChartView: BarChartView = {
         let chartView = BarChartView()
@@ -263,7 +245,7 @@ class MainScreenView: UIView {
         }
         
         let chartDataSet = BarChartDataSet(entries: dataEntries, label: "")
-        chartDataSet.colors = [UIColor(red: 44/255, green: 143/255, blue: 174/255, alpha: 1.0)]
+        chartDataSet.colors = [AppColors.accent]
         chartDataSet.valueFont = UIFont.systemFont(ofSize: 8, weight: .bold)
         chartDataSet.valueTextColor = .white
         
@@ -338,70 +320,108 @@ class MainScreenView: UIView {
     }
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            welcomeText.topAnchor.constraint(equalTo: topAnchor, constant: 34),
-            welcomeText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            
-            nameText.topAnchor.constraint(equalTo: welcomeText.bottomAnchor),
-            nameText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            
-            billingText.topAnchor.constraint(equalTo: circleView.topAnchor, constant: 12),
-            billingText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            
-            companyNameLabel.topAnchor.constraint(equalTo: billingText.bottomAnchor, constant: 8),
-            companyNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            companyNameLabel.heightAnchor.constraint(equalTo: welcomeText.heightAnchor, multiplier: 0.5),
-            
-            periodLabel.topAnchor.constraint(equalTo: companyNameLabel.bottomAnchor, constant: 10),
-            periodLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            periodLabel.heightAnchor.constraint(equalTo: companyNameLabel.heightAnchor),
-            
-            totalGeneralLabel.topAnchor.constraint(equalTo: periodLabel.bottomAnchor, constant: 10),
-            totalGeneralLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            totalGeneralLabel.heightAnchor.constraint(equalTo: companyNameLabel.heightAnchor),
-            
-            numberOfClientsLabel.topAnchor.constraint(equalTo: totalGeneralLabel.bottomAnchor, constant: 10),
-            numberOfClientsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            numberOfClientsLabel.heightAnchor.constraint(equalTo: companyNameLabel.heightAnchor),
-            
-            companyNameLabelValue.topAnchor.constraint(equalTo: companyNameLabel.topAnchor),
-            companyNameLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-            companyNameLabelValue.heightAnchor.constraint(equalTo: welcomeText.heightAnchor, multiplier: 0.5),
-            
-            totalGeneralLabelValue.topAnchor.constraint(equalTo: picker1.bottomAnchor, constant: 10),
-            totalGeneralLabelValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-            totalGeneralLabelValue.heightAnchor.constraint(equalTo: companyNameLabelValue.heightAnchor),
-            
-            numberOfAndTicketValue.topAnchor.constraint(equalTo: numberOfClientsLabel.topAnchor),
-            numberOfAndTicketValue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-            numberOfAndTicketValue.heightAnchor.constraint(equalTo: companyNameLabelValue.heightAnchor),
-            
-            barChartView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            barChartView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            barChartView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            barChartView.heightAnchor.constraint(equalToConstant: 320),
-            
-            circleView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
-            circleView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18),
-            circleView.topAnchor.constraint(equalTo: nameText.bottomAnchor, constant: 8),
-            circleView.heightAnchor.constraint(equalToConstant: 155),
-            
-            picker1.centerYAnchor.constraint(equalTo: periodLabel.centerYAnchor),
-            picker1.trailingAnchor.constraint(equalTo: picker2.leadingAnchor, constant: -8),
-            picker1.widthAnchor.constraint(equalToConstant: 100),
-            picker1.heightAnchor.constraint(equalToConstant: 28),
-            
-            picker2.centerYAnchor.constraint(equalTo: periodLabel.centerYAnchor),
-            picker2.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
-            picker2.widthAnchor.constraint(equalToConstant: 100),
-            picker2.heightAnchor.constraint(equalToConstant: 28)
-            
-        ])
+        // Background
+        backgroundView.anchor(
+            top: topAnchor,
+            leading: safeAreaLayoutGuide.leadingAnchor,
+            bottom: bottomAnchor,
+            trailing: safeAreaLayoutGuide.trailingAnchor
+        )
+
+        // Header
+        welcomeText.anchor(
+            top: topAnchor,
+            leading: leadingAnchor,
+            padding: UIEdgeInsets(top: 34, left: 20, bottom: 0, right: 0)
+        )
+
+        nameText.anchor(
+            top: welcomeText.bottomAnchor,
+            leading: leadingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
+        )
+
+        // Circle View (card)
+        circleView.anchor(
+            top: nameText.bottomAnchor,
+            leading: leadingAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 8, left: 18, bottom: 0, right: 18),
+            size: CGSize(width: 0, height: 155)
+        )
+
+        // Billing title
+        billingText.anchor(
+            top: circleView.topAnchor,
+            leading: leadingAnchor,
+            padding: UIEdgeInsets(top: 12, left: 32, bottom: 0, right: 0)
+        )
+
+        // Labels (lado esquerdo)
+        companyNameLabel.anchor(
+            top: billingText.bottomAnchor,
+            leading: leadingAnchor,
+            padding: UIEdgeInsets(top: 8, left: 32, bottom: 0, right: 0)
+        )
+
+        periodLabel.anchor(
+            top: companyNameLabel.bottomAnchor,
+            leading: leadingAnchor,
+            padding: UIEdgeInsets(top: 10, left: 32, bottom: 0, right: 0)
+        )
+
+        totalGeneralLabel.anchor(
+            top: periodLabel.bottomAnchor,
+            leading: leadingAnchor,
+            padding: UIEdgeInsets(top: 10, left: 32, bottom: 0, right: 0)
+        )
+
+        numberOfClientsLabel.anchor(
+            top: totalGeneralLabel.bottomAnchor,
+            leading: leadingAnchor,
+            padding: UIEdgeInsets(top: 10, left: 32, bottom: 0, right: 0)
+        )
+
+        // Values (lado direito)
+        companyNameLabelValue.anchor(
+            top: companyNameLabel.topAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32)
+        )
+
+        totalGeneralLabelValue.anchor(
+            top: picker1.bottomAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 32)
+        )
+
+        numberOfAndTicketValue.anchor(
+            top: numberOfClientsLabel.topAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32)
+        )
+
+        // Pickers
+        picker2.centerY(in: periodLabel)
+        picker2.anchor(
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32)
+        )
+
+        picker1.centerY(in: periodLabel)
+        picker1.anchor(
+            trailing: picker2.leadingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 8)
+        )
+
+        // Chart
+        barChartView.anchor(
+            leading: leadingAnchor,
+            bottom: safeAreaLayoutGuide.bottomAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 12, bottom: 20, right: 12),
+            size: CGSize(width: 0, height: 320)
+        )
     }
     
     func updateChart(data: [ResponseData]) {

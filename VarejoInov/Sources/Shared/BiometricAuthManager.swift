@@ -12,7 +12,6 @@ class BiometricAuthManager {
     static let shared = BiometricAuthManager()
     private init() {}
 
-    // Verifica se biometria está disponível
     func isBiometricAvailable() -> Bool {
         let context = LAContext()
         var error: NSError?
@@ -20,7 +19,6 @@ class BiometricAuthManager {
 &error)
     }
 
-    // Autentica com Face ID/Touch ID
     func authenticateWithBiometrics(completion: @escaping (Bool, Error?) -> Void) {
         let context = LAContext()
         let reason = "Autentique-se para renovar sua sessão"

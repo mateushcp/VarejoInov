@@ -33,7 +33,7 @@ class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         contentView.delegate = self
         viewModel.delegate = self
-        view.backgroundColor = UIColor(red: 230/255, green: 227/255, blue: 227/255, alpha: 1.0)
+        view.backgroundColor = AppColors.background
         navigationController?.navigationBar.isHidden = true
         setupContentView()
         viewModel.getProfileData()
@@ -46,8 +46,8 @@ class MainScreenViewController: UIViewController {
         let tabBar = UITabBar()
         tabBar.translatesAutoresizingMaskIntoConstraints = false
         tabBar.backgroundColor = .white
-        tabBar.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        tabBar.unselectedItemTintColor = UIColor(red: CGFloat(0x87) / 255.0, green: CGFloat(0xA2) / 255.0, blue: CGFloat(0xBE) / 255.0, alpha: 1.0)
+        tabBar.tintColor = AppColors.primary
+        tabBar.unselectedItemTintColor = AppColors.textSecondary
         
         let tab1 = UITabBarItem(title: "Faturamento", image: UIImage(named: "sales")?.resized(to: CGSize(width: 25, height: 25)), tag: 0)
         let tab2 = UITabBarItem(title: "Perfil", image: UIImage(named: "profile")?.resized(to: CGSize(width: 25, height: 25)), tag: 1)

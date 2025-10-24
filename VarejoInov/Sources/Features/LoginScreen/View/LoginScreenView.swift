@@ -14,8 +14,7 @@ class LoginScreenView: UIView {
     // MARK: - variables
     private var isLoginButtonEnabled: Bool = false {
         didSet {
-            loginButton.isEnabled = isLoginButtonEnabled
-            loginButton.backgroundColor = isLoginButtonEnabled ? UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0) : UIColor(red: 218/255, green: 221/255, blue: 223/255, alpha: 1.0)
+            loginButton.setEnabled(isLoginButtonEnabled)
         }
     }
     
@@ -39,88 +38,32 @@ class LoginScreenView: UIView {
         return imageView
     }()
     
-    private let loginField: UITextField = {
-        let field = UITextField()
-        field.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        field.layer.cornerRadius = 16
-        field.textAlignment = .left
-        field.placeholder = "Usuário"
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        field.attributedPlaceholder = NSAttributedString(string: "Usuário", attributes: placeholderAttributes)
-        field.textColor = .black
-        field.tintColor = .black
-        field.backgroundColor = .white
-        field.translatesAutoresizingMaskIntoConstraints = false
-        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 56))
-        let iconImageView = UIImageView(image: UIImage(named: "userIcon"))
-        iconImageView.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        iconImageView.contentMode = .scaleAspectFit
-        iconImageView.frame = CGRect(x: 8, y: 0, width: 24, height: 56)
-        iconContainerView.addSubview(iconImageView)
-        field.leftView = iconContainerView
-        field.leftViewMode = .always
+    private lazy var loginField: IconTextField = {
+        let field = IconTextField(
+            placeholder: "Usuário",
+            leftIcon: UIImage(named: "userIcon"),
+            keyboardType: .numberPad
+        )
         return field
     }()
-    
-    private let passwordField: UITextField = {
-        let field = UITextField()
-        field.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        field.layer.cornerRadius = 16
-        field.textAlignment = .left
-        field.placeholder = "Senha"
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        field.attributedPlaceholder = NSAttributedString(string: "Senha", attributes: placeholderAttributes)
-        field.backgroundColor = .white
-        field.textColor = .black
-        field.tintColor = .black
-        field.isSecureTextEntry = true
-        field.translatesAutoresizingMaskIntoConstraints = false
-        let iconContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 56))
-        let iconImageView = UIImageView(image: UIImage(named: "passwordIcon"))
-        iconImageView.contentMode = .scaleAspectFit
-        iconImageView.frame = CGRect(x: 8, y: 0, width: 24, height: 56)
-        iconImageView.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        iconContainerView.addSubview(iconImageView)
-        field.leftView = iconContainerView
-        field.leftViewMode = .always
-        
-        let rightContainerView = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 56))
-        field.rightView = rightContainerView
-        field.rightViewMode = .always
-        
-        let eyeButton = UIButton(type: .custom)
-        eyeButton.setImage(UIImage(named: "eyeClosedIcon"), for: .normal)
-        eyeButton.setImage(UIImage(named: "eyeOpenIcon"), for: .selected)
-        eyeButton.tintColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        eyeButton.frame = CGRect(x: -8, y: 16, width: 24, height: 24)
-        eyeButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
-        rightContainerView.addSubview(eyeButton)
-        
+
+    private lazy var passwordField: IconTextField = {
+        let field = IconTextField(
+            placeholder: "Senha",
+            leftIcon: UIImage(named: "passwordIcon"),
+            isSecure: true
+        )
         return field
     }()
-    
-    private let loginButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Entrar", for: .normal)
-        button.backgroundColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0)
-        button.heightAnchor.constraint(equalToConstant: 56).isActive = true
-        button.layer.cornerRadius = 16
+
+    private lazy var loginButton: PrimaryButton = {
+        let button = PrimaryButton(title: "Entrar")
         button.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    let domainButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Escolher Empresa", for: .normal)
-        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        button.layer.cornerRadius = 16
-        button.layer.borderColor = UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0).cgColor
-        button.layer.borderWidth = 2
-        button.setTitleColor(UIColor(red: 18/255, green: 0/255, blue: 82/255, alpha: 1.0), for: .normal)
-//        button.addTarget(self, action: #selector(domainTapped), for: .touchUpInside)
-        button.widthAnchor.constraint(equalToConstant: 160).isActive = true
-        button.translatesAutoresizingMaskIntoConstraints = false
+
+    let domainButton: SecondaryButton = {
+        let button = SecondaryButton(title: "Escolher Empresa", width: 160)
         return button
     }()
     
@@ -142,10 +85,14 @@ class LoginScreenView: UIView {
     // MARK: - private functions
     
     private func configureDoneToolbarForKeyboard() {
-        let doneToolbar = UIToolbar()
+        let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        doneToolbar.barStyle = .default
         doneToolbar.sizeToFit()
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "OK", style: .done, target: self, action: #selector(dismissKeyboard))
-        doneToolbar.setItems([UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), doneButton], animated: true)
+
+        doneToolbar.items = [flexSpace, doneButton]
         loginField.inputAccessoryView = doneToolbar
         passwordField.inputAccessoryView = doneToolbar
     }
@@ -159,13 +106,7 @@ class LoginScreenView: UIView {
     @objc private func dismissKeyboard() {
         self.endEditing(true)
     }
-    
-    @objc
-    private func togglePasswordVisibility(sender: UIButton) {
-        sender.isSelected.toggle()
-        passwordField.isSecureTextEntry.toggle()
-    }
-    
+
     @objc
     private func loginTapped() {
         if UserDefaultsManager.shared.subdomain == nil {
@@ -230,33 +171,45 @@ class LoginScreenView: UIView {
     }
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            logoView.bottomAnchor.constraint(equalTo: loginField.topAnchor, constant: -16),
-            logoView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
-            loginField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            loginField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            loginField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
-            
-            passwordField.topAnchor.constraint(equalTo: loginField.bottomAnchor, constant: 15),
-            passwordField.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            passwordField.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
-            
-            domainButton.bottomAnchor.constraint(equalTo: loginField.topAnchor, constant: -24),
-            domainButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            loginButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -48),
-            loginButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
-            loginButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32),
-            
-            
-        ])
-        
+        backgroundView.anchor(
+            top: topAnchor,
+            leading: safeAreaLayoutGuide.leadingAnchor,
+            bottom: bottomAnchor,
+            trailing: safeAreaLayoutGuide.trailingAnchor
+        )
+
+        loginField.centerY(in: self)
+        loginField.anchor(
+            leading: leadingAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 32)
+        )
+
+        logoView.anchor(
+            bottom: loginField.topAnchor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        )
+        logoView.centerX(in: self)
+
+        passwordField.anchor(
+            top: loginField.bottomAnchor,
+            leading: leadingAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 15, left: 32, bottom: 0, right: 32)
+        )
+
+        domainButton.anchor(
+            bottom: loginField.topAnchor,
+            padding: UIEdgeInsets(top: 0, left: 0, bottom: 24, right: 0)
+        )
+        domainButton.centerX(in: self)
+
+        loginButton.anchor(
+            leading: leadingAnchor,
+            bottom: bottomAnchor,
+            trailing: trailingAnchor,
+            padding: UIEdgeInsets(top: 0, left: 32, bottom: 48, right: 32)
+        )
     }
     
 }
@@ -268,12 +221,20 @@ extension LoginScreenView {
     }
 
     @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.frame.origin.y = -keyboardSize.height / 2
+        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+
+        // Calcula quanto precisa mover para os campos ficarem visíveis
+        let keyboardHeight = keyboardFrame.height
+        let moveDistance = -keyboardHeight / 2
+
+        UIView.animate(withDuration: 0.3) {
+            self.transform = CGAffineTransform(translationX: 0, y: moveDistance)
         }
     }
 
     @objc func keyboardWillHide(_ notification: Notification) {
-        self.frame.origin.y = 0
+        UIView.animate(withDuration: 0.3) {
+            self.transform = .identity
+        }
     }
 }

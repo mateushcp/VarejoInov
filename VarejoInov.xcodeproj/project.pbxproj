@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E56047D2EA703400035570C /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E56047C2EA7033A0035570C /* KeychainManager.swift */; };
-		1E56047F2EA703FE0035570C /* BiometricAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E56047E2EA703FB0035570C /* BiometricAuthManager.swift */; };
 		1E8F6ADD2EA7BFD300C99292 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6ADB2EA7BFD300C99292 /* AuthAPI.swift */; };
 		1E8F6ADF2EA7BFF000C99292 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6ADE2EA7BFF000C99292 /* UIViewController+Ext.swift */; };
+		1E8F6AE72EAC1F5400C99292 /* InfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AE32EAC1F5400C99292 /* InfoRowView.swift */; };
+		1E8F6AE82EAC1F5400C99292 /* IconTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AE22EAC1F5400C99292 /* IconTextField.swift */; };
+		1E8F6AE92EAC1F5400C99292 /* SecondaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AE52EAC1F5400C99292 /* SecondaryButton.swift */; };
+		1E8F6AEA2EAC1F5400C99292 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AE42EAC1F5400C99292 /* PrimaryButton.swift */; };
+		1E8F6AEB2EAC1F5400C99292 /* StyledDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AE62EAC1F5400C99292 /* StyledDatePicker.swift */; };
+		1E8F6AED2EAC1F6C00C99292 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AEC2EAC1F6C00C99292 /* AppColors.swift */; };
+		1E8F6AF32EAC1FD800C99292 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AF02EAC1FD800C99292 /* KeychainManager.swift */; };
+		1E8F6AF42EAC1FD800C99292 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AF12EAC1FD800C99292 /* ProfileData.swift */; };
+		1E8F6AF52EAC1FD800C99292 /* BiometricAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6AEF2EAC1FD800C99292 /* BiometricAuthManager.swift */; };
+		1E8F6C042EAC238800C99292 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8F6C032EAC238800C99292 /* UIView+AutoLayout.swift */; };
 		A94121732A82D9F300A635D5 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94121722A82D9F300A635D5 /* UIImage + Ext.swift */; };
 		A94121782A83403300A635D5 /* Strings + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94121772A83403300A635D5 /* Strings + Ext.swift */; };
-		A955C05E2AB1E7AE00663330 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A955C05D2AB1E7AE00663330 /* ProfileData.swift */; };
 		A9BEA0F12A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */; };
 		A9BEA0F32A61C4E300E06221 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F22A61C4E300E06221 /* RequestData.swift */; };
 		A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */; };
@@ -41,15 +48,22 @@
 
 /* Begin PBXFileReference section */
 		04CB4E4DC9E4E3EAE219CEB1 /* Pods_VarejoInov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VarejoInov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E56047C2EA7033A0035570C /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		1E56047E2EA703FB0035570C /* BiometricAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthManager.swift; sourceTree = "<group>"; };
 		1E8F6ADB2EA7BFD300C99292 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		1E8F6ADE2EA7BFF000C99292 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		1E8F6AE22EAC1F5400C99292 /* IconTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTextField.swift; sourceTree = "<group>"; };
+		1E8F6AE32EAC1F5400C99292 /* InfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRowView.swift; sourceTree = "<group>"; };
+		1E8F6AE42EAC1F5400C99292 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		1E8F6AE52EAC1F5400C99292 /* SecondaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButton.swift; sourceTree = "<group>"; };
+		1E8F6AE62EAC1F5400C99292 /* StyledDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledDatePicker.swift; sourceTree = "<group>"; };
+		1E8F6AEC2EAC1F6C00C99292 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		1E8F6AEF2EAC1FD800C99292 /* BiometricAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthManager.swift; sourceTree = "<group>"; };
+		1E8F6AF02EAC1FD800C99292 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		1E8F6AF12EAC1FD800C99292 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
+		1E8F6C032EAC238800C99292 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		2134C3B9F073FAC2D75EDEB5 /* Pods-VarejoInov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.debug.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.debug.xcconfig"; sourceTree = "<group>"; };
 		597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.release.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.release.xcconfig"; sourceTree = "<group>"; };
 		A94121722A82D9F300A635D5 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
 		A94121772A83403300A635D5 /* Strings + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings + Ext.swift"; sourceTree = "<group>"; };
-		A955C05D2AB1E7AE00663330 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETipoRelatorioAppFinanceiro.swift; sourceTree = "<group>"; };
 		A9BEA0F22A61C4E300E06221 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		A9BEA0F42A61C5EB00E06221 /* LoginScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewModel.swift; sourceTree = "<group>"; };
@@ -96,6 +110,30 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		1E8F6AEE2EAC1F7500C99292 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1E8F6AE22EAC1F5400C99292 /* IconTextField.swift */,
+				1E8F6AE32EAC1F5400C99292 /* InfoRowView.swift */,
+				1E8F6AE42EAC1F5400C99292 /* PrimaryButton.swift */,
+				1E8F6AE52EAC1F5400C99292 /* SecondaryButton.swift */,
+				1E8F6AE62EAC1F5400C99292 /* StyledDatePicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1E8F6AF22EAC1FD800C99292 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1E8F6AEF2EAC1FD800C99292 /* BiometricAuthManager.swift */,
+				1E8F6AF02EAC1FD800C99292 /* KeychainManager.swift */,
+				1E8F6AF12EAC1FD800C99292 /* ProfileData.swift */,
+				1E8F6AEE2EAC1F7500C99292 /* Components */,
+				1E8F6AEC2EAC1F6C00C99292 /* AppColors.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		580FDAA634709D5F1339B318 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,16 +149,6 @@
 				597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		A955C05C2AB1E7A200663330 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				1E56047E2EA703FB0035570C /* BiometricAuthManager.swift */,
-				1E56047C2EA7033A0035570C /* KeychainManager.swift */,
-				A955C05D2AB1E7AE00663330 /* ProfileData.swift */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		A9BEA0FC2A65E31900E06221 /* UserDefaults */ = {
@@ -162,6 +190,7 @@
 		A9EC6A752A5EF49C00FB792C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				1E8F6AF22EAC1FD800C99292 /* Shared */,
 				1E8F6ADC2EA7BFD300C99292 /* API */,
 				A9BEA0FC2A65E31900E06221 /* UserDefaults */,
 				A9EC6A812A5F099800FB792C /* Extensions */,
@@ -186,7 +215,6 @@
 		A9EC6A772A5F061800FB792C /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				A955C05C2AB1E7A200663330 /* Shared */,
 				A9EC6A832A5F09D400FB792C /* LoginScreen */,
 				A9EC6A842A5F0A1300FB792C /* MainScreen */,
 			);
@@ -223,6 +251,7 @@
 		A9EC6A812A5F099800FB792C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1E8F6C032EAC238800C99292 /* UIView+AutoLayout.swift */,
 				1E8F6ADE2EA7BFF000C99292 /* UIViewController+Ext.swift */,
 				A9EC6A942A5F203500FB792C /* UITextField+ Ext.swift */,
 				A94121722A82D9F300A635D5 /* UIImage + Ext.swift */,
@@ -405,21 +434,28 @@
 				A9EC6A9D2A5F3D4000FB792C /* MainScreenViewDelegate.swift in Sources */,
 				A9EC6A7F2A5F087500FB792C /* ViewControllerFactoryProtocol.swift in Sources */,
 				A94121732A82D9F300A635D5 /* UIImage + Ext.swift in Sources */,
+				1E8F6AE72EAC1F5400C99292 /* InfoRowView.swift in Sources */,
+				1E8F6AE82EAC1F5400C99292 /* IconTextField.swift in Sources */,
+				1E8F6AE92EAC1F5400C99292 /* SecondaryButton.swift in Sources */,
+				1E8F6AEA2EAC1F5400C99292 /* PrimaryButton.swift in Sources */,
+				1E8F6AEB2EAC1F5400C99292 /* StyledDatePicker.swift in Sources */,
 				A9EC6A8C2A5F0CB600FB792C /* LoginScreenViewDelegate.swift in Sources */,
+				1E8F6C042EAC238800C99292 /* UIView+AutoLayout.swift in Sources */,
 				A9EC6A8E2A5F0CC500FB792C /* LoginScreenViewController.swift in Sources */,
 				A9BEA0F72A61CBB900E06221 /* MainScreenViewModel.swift in Sources */,
 				A9EC6A622A5EF21E00FB792C /* AppDelegate.swift in Sources */,
-				1E56047F2EA703FE0035570C /* BiometricAuthManager.swift in Sources */,
+				1E8F6AED2EAC1F6C00C99292 /* AppColors.swift in Sources */,
+				1E8F6AF32EAC1FD800C99292 /* KeychainManager.swift in Sources */,
+				1E8F6AF42EAC1FD800C99292 /* ProfileData.swift in Sources */,
+				1E8F6AF52EAC1FD800C99292 /* BiometricAuthManager.swift in Sources */,
 				A9BEA0F92A61E7D500E06221 /* MainScreenViewModelDelegate.swift in Sources */,
 				A9BEA1002A65E7DC00E06221 /* AuthRequestData.swift in Sources */,
 				A9EC6A7D2A5F086100FB792C /* ViewControllerFactory.swift in Sources */,
 				A9EC6A792A5F063A00FB792C /* VarejoInovFlowController.swift in Sources */,
 				A9EC6A8A2A5F0CA700FB792C /* LoginScreenView.swift in Sources */,
 				A9EC6A992A5F3D2C00FB792C /* MainScreenFlowDelegate.swift in Sources */,
-				A955C05E2AB1E7AE00663330 /* ProfileData.swift in Sources */,
 				A9EC6A642A5EF21E00FB792C /* SceneDelegate.swift in Sources */,
 				A9EC6A972A5F3D2200FB792C /* MainScreenViewController.swift in Sources */,
-				1E56047D2EA703400035570C /* KeychainManager.swift in Sources */,
 				A9BEA0F52A61C5EB00E06221 /* LoginScreenViewModel.swift in Sources */,
 				1E8F6ADD2EA7BFD300C99292 /* AuthAPI.swift in Sources */,
 				A9EC6A9B2A5F3D3200FB792C /* MainScreenView.swift in Sources */,
