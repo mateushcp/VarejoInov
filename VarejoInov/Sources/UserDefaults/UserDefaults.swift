@@ -86,11 +86,11 @@ class UserDefaultsManager {
     }
     
     func savedDomains() -> [String] {
-           if let domains = UserDefaults.standard.array(forKey: "savedDomains") as? [String] {
-               return domains
-           }
-           return []
-       }
+        if let domains = UserDefaults.standard.array(forKey: "savedDomains") as? [String] {
+            return domains
+        }
+        return []
+    }
     
     func addDomain(_ domain: String) {
         var domains = savedDomains()
@@ -106,4 +106,14 @@ class UserDefaultsManager {
         }
     }
     
+    func clearUserDefaultsProfile() {
+        UserDefaultsManager.shared.nome = nil
+        UserDefaultsManager.shared.cpfCnpj = nil
+        UserDefaultsManager.shared.telefone = nil
+        UserDefaultsManager.shared.enderecoRua = nil
+        UserDefaultsManager.shared.enderecoNumero = nil
+        UserDefaultsManager.shared.fantasia = nil
+        
+    }
 }
+

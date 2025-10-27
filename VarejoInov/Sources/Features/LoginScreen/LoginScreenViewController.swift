@@ -32,19 +32,6 @@ class LoginScreenViewController: UIViewController {
         viewModel.delegate = self
         setupContentView()
         setupNavBar()
-        handleFirstAcces()
-    }
-    
-    private func handleFirstAcces() {
-        if let domain = UserDefaultsManager.shared.subdomain {
-            viewModel.sendRequest()
-        } else {
-            contentView.domainButton.setTitle("Escolher Empresa", for: .normal)
-        }
-        
-        if UserDefaultsManager.shared.nome == nil {
-            viewModel.getProfileData()
-        }
     }
     
     private func handleLoginResult(result: LoginResult) {
@@ -70,7 +57,7 @@ class LoginScreenViewController: UIViewController {
         view.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        if let currentDomain = UserDefaultsManager.shared.savedDomains().first {
+        if let currentDomain = UserDefaultsManager.shared.subdomain {
                contentView.domainButton.setTitle(currentDomain, for: .normal)
            }
         contentView.domainButton.addTarget(self, action: #selector(presentDomainOptions), for: .touchUpInside)
@@ -87,19 +74,13 @@ class LoginScreenViewController: UIViewController {
     @objc
     private func presentDomainOptions() {
         let alertController = UIAlertController(title: "Escolher Domínio", message: nil, preferredStyle: .actionSheet)
-        
-        if let currentDomain = UserDefaultsManager.shared.savedDomains().first {
-            let currentDomainAction = UIAlertAction(title: "Domínio Atual: \(currentDomain)", style: .default, handler: nil)
-            alertController.addAction(currentDomainAction)
-        }
-        
+                
         let savedDomains = UserDefaultsManager.shared.savedDomains()
         for domain in savedDomains {
             let domainAction = UIAlertAction(title: domain, style: .default) { [weak self] _ in
                 UserDefaultsManager.shared.subdomain = domain
                 self?.contentView.domainButton.setTitle(domain, for: .normal)
-                self?.viewModel.sendRequest()
-                self?.viewModel.getProfileData()
+
             }
             alertController.addAction(domainAction)
         }
@@ -168,8 +149,7 @@ class LoginScreenViewController: UIViewController {
             UserDefaultsManager.shared.subdomain = domain
             UserDefaultsManager.shared.addDomain(domain)
             self?.contentView.domainButton.setTitle(domain, for: .normal)
-            self?.viewModel.sendRequest()
-            self?.viewModel.getProfileData()
+
         }
         
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
@@ -195,19 +175,14 @@ extension LoginScreenViewController: LoginScreenViewDelegate {
 }
 
 extension LoginScreenViewController: LoginScreenViewModelDelegate {
-    
+
     func loginResul(result: LoginResult) {
         handleLoginResult(result: result)
     }
-    
+
     func didReceiveResponseValues(_ responseValues: [ResponseData]) {
         self.responseValues = responseValues
     }
-    
-    func didSetDomain() {
-        viewModel.sendRequest()
-        viewModel.getProfileData()
-    }
-    
+
 }
  
