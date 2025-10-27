@@ -52,7 +52,7 @@ class MainScreenViewModel {
                         let profileResponse = try decoder.decode([ProfileResponseModel].self, from: responseData)
 
                         if let profile = profileResponse.first {
-                            ProfileData.shared.profiles = profileResponse
+                            ProfileData.shared.profiles = profileResponse.filter { $0.Ativo }
 
                             UserDefaultsManager.shared.nome = profile.Nome
                             UserDefaultsManager.shared.cpfCnpj = profile.CpfCnpj

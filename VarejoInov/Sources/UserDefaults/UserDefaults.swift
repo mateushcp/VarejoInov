@@ -107,7 +107,6 @@ class UserDefaultsManager {
     }
     
     func clearUserDefaultsProfile() {
-        UserDefaultsManager.shared.subdomain = nil
         UserDefaultsManager.shared.nome = nil
         UserDefaultsManager.shared.cpfCnpj = nil
         UserDefaultsManager.shared.telefone = nil

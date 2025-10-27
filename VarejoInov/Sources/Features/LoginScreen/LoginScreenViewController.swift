@@ -74,12 +74,7 @@ class LoginScreenViewController: UIViewController {
     @objc
     private func presentDomainOptions() {
         let alertController = UIAlertController(title: "Escolher Domínio", message: nil, preferredStyle: .actionSheet)
-        
-        if let currentDomain = UserDefaultsManager.shared.subdomain {
-            let currentDomainAction = UIAlertAction(title: "Domínio Atual: \(currentDomain)", style: .default, handler: nil)
-            alertController.addAction(currentDomainAction)
-        }
-        
+                
         let savedDomains = UserDefaultsManager.shared.savedDomains()
         for domain in savedDomains {
             let domainAction = UIAlertAction(title: domain, style: .default) { [weak self] _ in
