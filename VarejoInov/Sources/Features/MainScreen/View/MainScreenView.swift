@@ -455,7 +455,15 @@ class MainScreenView: UIView {
     
     private func showCompanySelectionAlert() {
         let alertController = UIAlertController(title: "Selecionar Empresa", message: "Escolha uma empresa:", preferredStyle: .actionSheet)
-        
+
+        if let presenter = delegate as? UIViewController {
+            if let popoverController = alertController.popoverPresentationController {
+                popoverController.sourceView = presenter.view
+                popoverController.sourceRect = CGRect(x: presenter.view.bounds.midX, y: presenter.view.bounds.midY, width: 0, height: 0)
+                popoverController.permittedArrowDirections = []
+            }
+        }
+
         for profile in ProfileData.shared.profiles {
             let action = UIAlertAction(title: profile.Fantasia, style: .default) { [weak self] _ in
                 self?.updateCompanyInfo(with: profile)
@@ -463,10 +471,10 @@ class MainScreenView: UIView {
             }
             alertController.addAction(action)
         }
-        
+
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
-        
+
         if let presenter = delegate as? UIViewController {
             presenter.present(alertController, animated: true, completion: nil)
         }

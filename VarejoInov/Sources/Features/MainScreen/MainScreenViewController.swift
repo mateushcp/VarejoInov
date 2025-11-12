@@ -155,7 +155,13 @@ extension MainScreenViewController: UITabBarDelegate {
     
     func presentFilters() {
         let alertController = UIAlertController(title: "Filtros", message: "Escolha um filtro:", preferredStyle: .actionSheet)
-        
+
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+
         let salesByDayAction = UIAlertAction(title: "Vendas por Dia", style: .default) { _ in
             self.currentFilter = self.handleFilters(filter: "Vendas por Dia")
             let startDate = self.contentView.selectedStartDate
@@ -191,20 +197,15 @@ extension MainScreenViewController: UITabBarDelegate {
             self.viewModel.sendRequest(startDate: startDate, endDate: endDate, filter: self.currentFilter, code: code)
             self.contentView.shouldShowAxisInVertical = true
         }
-        
+
         let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-        
-        if let popoverController = alertController.popoverPresentationController {
-               popoverController.sourceView = self.view
-               popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) 
-               popoverController.permittedArrowDirections = [] 
-           }
+
         alertController.addAction(salesByDayAction)
         alertController.addAction(salesByHourAction)
         alertController.addAction(paymentMethodsAction)
         alertController.addAction(paymentMethodsNFAction)
         alertController.addAction(cancelAction)
-        
+
         present(alertController, animated: true, completion: nil)
     }
     

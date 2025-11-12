@@ -74,37 +74,36 @@ class LoginScreenViewController: UIViewController {
     @objc
     private func presentDomainOptions() {
         let alertController = UIAlertController(title: "Escolher Domínio", message: nil, preferredStyle: .actionSheet)
-                
+
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.sourceView = self.view
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+        }
+
         let savedDomains = UserDefaultsManager.shared.savedDomains()
         for domain in savedDomains {
             let domainAction = UIAlertAction(title: domain, style: .default) { [weak self] _ in
                 UserDefaultsManager.shared.subdomain = domain
                 self?.contentView.domainButton.setTitle(domain, for: .normal)
-
             }
             alertController.addAction(domainAction)
         }
-        
+
         let newDomainAction = UIAlertAction(title: "Inserir/Alterar Domínio", style: .default) { [weak self] _ in
             self?.presentNewDomainAlert()
         }
         alertController.addAction(newDomainAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        if let popoverController = alertController.popoverPresentationController {
-            popoverController.sourceView = self.view // Substitua self.view pela vista apropriada
-            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // Defina as coordenadas apropriadas
-            popoverController.permittedArrowDirections = [] // Defina as direções apropriadas do popover
-        }
-        
-        present(alertController, animated: true, completion: nil)
-        
+
         let removeDomainsAction = UIAlertAction(title: "Remover Domínios", style: .destructive) { [weak self] _ in
             self?.presentRemoveDomainsAlert()
         }
         alertController.addAction(removeDomainsAction)
+
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
     }
     
     private func presentRemoveDomainsAlert() {
