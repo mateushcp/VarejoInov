@@ -43,11 +43,11 @@
 		A9EC6A992A5F3D2C00FB792C /* MainScreenFlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A982A5F3D2C00FB792C /* MainScreenFlowDelegate.swift */; };
 		A9EC6A9B2A5F3D3200FB792C /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A9A2A5F3D3200FB792C /* MainScreenView.swift */; };
 		A9EC6A9D2A5F3D4000FB792C /* MainScreenViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EC6A9C2A5F3D4000FB792C /* MainScreenViewDelegate.swift */; };
-		DCFD0A8FB749A1F4207A7BDF /* Pods_VarejoInov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB4E4DC9E4E3EAE219CEB1 /* Pods_VarejoInov.framework */; };
+		E814FEFD2BA0DDB2E4610BE1 /* Pods_VarejoInov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0467C98541BC0F7895350803 /* Pods_VarejoInov.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		04CB4E4DC9E4E3EAE219CEB1 /* Pods_VarejoInov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VarejoInov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0467C98541BC0F7895350803 /* Pods_VarejoInov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VarejoInov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E8F6ADB2EA7BFD300C99292 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		1E8F6ADE2EA7BFF000C99292 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		1E8F6AE22EAC1F5400C99292 /* IconTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconTextField.swift; sourceTree = "<group>"; };
@@ -60,8 +60,8 @@
 		1E8F6AF02EAC1FD800C99292 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		1E8F6AF12EAC1FD800C99292 /* ProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		1E8F6C032EAC238800C99292 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
-		2134C3B9F073FAC2D75EDEB5 /* Pods-VarejoInov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.debug.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.debug.xcconfig"; sourceTree = "<group>"; };
-		597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.release.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.release.xcconfig"; sourceTree = "<group>"; };
+		57419760E3A4734741E96752 /* Pods-VarejoInov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.debug.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.debug.xcconfig"; sourceTree = "<group>"; };
+		5EB23AEEE61DE8197E900902 /* Pods-VarejoInov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VarejoInov.release.xcconfig"; path = "Target Support Files/Pods-VarejoInov/Pods-VarejoInov.release.xcconfig"; sourceTree = "<group>"; };
 		A94121722A82D9F300A635D5 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
 		A94121772A83403300A635D5 /* Strings + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings + Ext.swift"; sourceTree = "<group>"; };
 		A9BEA0F02A61C4C000E06221 /* ETipoRelatorioAppFinanceiro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETipoRelatorioAppFinanceiro.swift; sourceTree = "<group>"; };
@@ -95,13 +95,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCFD0A8FB749A1F4207A7BDF /* Pods_VarejoInov.framework in Frameworks */,
+				E814FEFD2BA0DDB2E4610BE1 /* Pods_VarejoInov.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00CD1DB938B58EBDD9146E09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0467C98541BC0F7895350803 /* Pods_VarejoInov.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1E8F6ADC2EA7BFD300C99292 /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,19 +142,11 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		580FDAA634709D5F1339B318 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				04CB4E4DC9E4E3EAE219CEB1 /* Pods_VarejoInov.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6AA15925BF12015D9F26EEC8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2134C3B9F073FAC2D75EDEB5 /* Pods-VarejoInov.debug.xcconfig */,
-				597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */,
+				57419760E3A4734741E96752 /* Pods-VarejoInov.debug.xcconfig */,
+				5EB23AEEE61DE8197E900902 /* Pods-VarejoInov.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -165,7 +165,7 @@
 				A9EC6A602A5EF21E00FB792C /* VarejoInov */,
 				A9EC6A5F2A5EF21E00FB792C /* Products */,
 				6AA15925BF12015D9F26EEC8 /* Pods */,
-				580FDAA634709D5F1339B318 /* Frameworks */,
+				00CD1DB938B58EBDD9146E09 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -324,11 +324,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9EC6A722A5EF21F00FB792C /* Build configuration list for PBXNativeTarget "VarejoInov" */;
 			buildPhases = (
-				A46B62AA8B27204C9AD08674 /* [CP] Check Pods Manifest.lock */,
+				4A04B0AE6081FA4FCCAAE4EE /* [CP] Check Pods Manifest.lock */,
 				A9EC6A5A2A5EF21E00FB792C /* Sources */,
 				A9EC6A5B2A5EF21E00FB792C /* Frameworks */,
 				A9EC6A5C2A5EF21E00FB792C /* Resources */,
-				315A56CEE4A0F7D790B66ABA /* [CP] Embed Pods Frameworks */,
+				8D373AAEFD3F5CE7C9487ED9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -347,7 +347,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					A9EC6A5D2A5EF21E00FB792C = {
 						CreatedOnToolsVersion = 14.2;
@@ -384,24 +384,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		315A56CEE4A0F7D790B66ABA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VarejoInov/Pods-VarejoInov-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-VarejoInov/Pods-VarejoInov-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VarejoInov/Pods-VarejoInov-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A46B62AA8B27204C9AD08674 /* [CP] Check Pods Manifest.lock */ = {
+		4A04B0AE6081FA4FCCAAE4EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -421,6 +404,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D373AAEFD3F5CE7C9487ED9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VarejoInov/Pods-VarejoInov-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VarejoInov/Pods-VarejoInov-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VarejoInov/Pods-VarejoInov-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -475,6 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -507,6 +508,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -535,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -567,6 +570,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -587,27 +591,32 @@
 		};
 		A9EC6A732A5EF21F00FB792C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2134C3B9F073FAC2D75EDEB5 /* Pods-VarejoInov.debug.xcconfig */;
+			baseConfigurationReference = 57419760E3A4734741E96752 /* Pods-VarejoInov.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y67P2B64A8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VarejoInov/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Inov Vendas";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Usamos Face ID para renovar sua sessão automaticamente";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LoginScreenViewController;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = samuelfranca.VarejoInov;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = samuelfranca.varejoinov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -616,27 +625,32 @@
 		};
 		A9EC6A742A5EF21F00FB792C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 597FA1638084531C2201BF2F /* Pods-VarejoInov.release.xcconfig */;
+			baseConfigurationReference = 5EB23AEEE61DE8197E900902 /* Pods-VarejoInov.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y67P2B64A8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = VarejoInov/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Inov Vendas";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Usamos Face ID para renovar sua sessão automaticamente";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LoginScreenViewController;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = samuelfranca.VarejoInov;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = samuelfranca.varejoinov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

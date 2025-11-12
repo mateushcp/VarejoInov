@@ -6,6 +6,6 @@ target 'VarejoInov' do
   use_frameworks!
 
   # Pods for VarejoInov
-  pod 'Charts'
+  pod 'DGCharts', '~> 5.1'
 
 end

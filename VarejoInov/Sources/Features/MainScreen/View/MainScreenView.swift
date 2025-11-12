@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import Charts
+import DGCharts
 
 class MainScreenView: UIView {
     public weak var delegate: MainScreenViewDelegate?
