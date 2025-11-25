@@ -51,12 +51,13 @@ class MainScreenViewModel {
                         let decoder = JSONDecoder()
                         let profileResponse = try decoder.decode([ProfileResponseModel].self, from: responseData)
 
-                        if let profile = profileResponse.first {
-                            ProfileData.shared.profiles = profileResponse.filter { $0.Ativo }
+                        let activeProfiles = profileResponse.filter { $0.Ativo }
+                        ProfileData.shared.profiles = activeProfiles
+                        if let profile = activeProfiles.first {
 
                             UserDefaultsManager.shared.nome = profile.Nome
                             UserDefaultsManager.shared.cpfCnpj = profile.CpfCnpj
-                            UserDefaultsManager.shared.telefone = profile.Celular
+                            UserDefaultsManager.shared.telefone = profile.Telefone ?? ""
                             UserDefaultsManager.shared.enderecoRua = profile.Endereco.Logradouro
                             UserDefaultsManager.shared.enderecoNumero = profile.Endereco.Numero
                             UserDefaultsManager.shared.fantasia = profile.Fantasia
@@ -95,7 +96,7 @@ class MainScreenViewModel {
             let requestData = RequestData(DataInicial: startDate != nil ? dateFormatter.string(from: startDate!) : dateFormatter.string(from: today),
                                           DataFinal: endDate != nil ? dateFormatter.string(from: endDate!) : dateFormatter.string(from: today),
                                           Tipo: filter ?? .VendaDia,
-                                          Empresa: code ?? 1)
+                                          Empresa: code ?? 0)
 
             do {
                 let encoder = JSONEncoder()

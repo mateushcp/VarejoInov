@@ -487,7 +487,7 @@ class MainScreenView: UIView {
         companyNameLabelValue.text = cnpj.formatCPFCNPJ(cnpj)
         UserDefaultsManager.shared.nome = profile.Fantasia
         UserDefaultsManager.shared.cpfCnpj = profile.CpfCnpj
-        UserDefaultsManager.shared.telefone = profile.Telefone
+        UserDefaultsManager.shared.telefone = profile.Telefone ?? ""
         UserDefaultsManager.shared.enderecoRua = profile.Endereco.Logradouro
         UserDefaultsManager.shared.enderecoNumero = profile.Endereco.Numero
         delegate?.getNewChart(startDate: self.selectedStartDate, endDate: self.selectedEndDate, code: self.code)
